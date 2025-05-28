@@ -9,10 +9,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio - Creative Developer",
+  title: "Rahul Shah - Full Stack Developer",
   description:
-    "A sleek, modern portfolio showcasing creative development work with Apple-inspired design principles.",
-  generator: "v0.dev",
+    "Rahul Shah - Full Stack Developer. Building scalable and efficient web applications. Arizona State University",
 };
 
 export default function RootLayout({

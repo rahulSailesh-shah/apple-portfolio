@@ -15,9 +15,9 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
             clearInterval(interval);
             return 100;
           }
-          return prev + Math.random() * 15;
+          return prev + Math.random() * 40;
         });
-      }, 150);
+      }, 120);
 
       return () => clearInterval(interval);
     }
@@ -31,7 +31,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
         {/* Logo Animation */}
         <div className="flex justify-center">
           <div className="relative">
-            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl animate-pulse">
+            <div className="w-16 h-16 bg-gradient-to-br from-blue-900 to-blue-600 rounded-2xl flex items-center justify-center shadow-2xl animate-pulse">
               <span className="text-white font-bold text-2xl">RS</span>
             </div>
             <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full border-4 border-white dark:border-black animate-bounce"></div>
@@ -52,7 +52,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
         <div className="w-64 mx-auto space-y-2">
           <div className="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-1">
             <div
-              className="bg-gradient-to-r from-blue-500 to-purple-600 h-1 rounded-full transition-all duration-300 ease-out"
+              className="bg-gradient-to-r from-blue-900 to-blue-600 h-1 rounded-full transition-all duration-300 ease-out"
               style={{ width: `${Math.min(progress, 100)}%` }}
             ></div>
           </div>

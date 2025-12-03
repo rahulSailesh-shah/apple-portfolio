@@ -9,12 +9,13 @@ import { Resume } from "@/components/Resume";
 import { Projects } from "@/components/Projects";
 import { Contact } from "@/components/Contact";
 import { Heart } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function Portfolio() {
   const [darkMode, setDarkMode] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  //   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -30,14 +31,14 @@ export default function Portfolio() {
     }
   }, [darkMode]);
 
-  // Loading simulation
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000); // 3 seconds loading time
+  //   // Loading simulation
+  //   useEffect(() => {
+  //     const timer = setTimeout(() => {
+  //       setIsLoading(false);
+  //     }, 1000); // 1 second loading time
 
-    return () => clearTimeout(timer);
-  }, []);
+  //     return () => clearTimeout(timer);
+  //   }, []);
 
   return (
     <div
@@ -45,12 +46,17 @@ export default function Portfolio() {
         darkMode ? "dark" : ""
       }`}
     >
-      <LoadingScreen isLoading={isLoading} />
+      {/* <LoadingScreen isLoading={isLoading} /> */}
 
       <div
-        className={`bg-white dark:bg-black text-black dark:text-white transition-opacity duration-500 ${
-          isLoading ? "opacity-0" : "opacity-100"
-        }`}
+        // className={`bg-white dark:bg-black text-black dark:text-white transition-opacity duration-500 ${
+        //   isLoading ? "opacity-0" : "opacity-100"
+        //           }`}
+
+        className={cn(
+          "bg-white dark:bg-black text-black dark:text-white transition-opacity duration-500"
+          //   isLoading ? "opacity-0" : "opacity-100"
+        )}
       >
         <Navigation
           darkMode={darkMode}
@@ -58,7 +64,7 @@ export default function Portfolio() {
           mobileMenuOpen={mobileMenuOpen}
           setMobileMenuOpen={setMobileMenuOpen}
         />
-        <Hero scrollY={scrollY} />
+        <Hero scrollY={scrollY} darkMode={darkMode} />
         <About />
         <Resume />
         <Projects />

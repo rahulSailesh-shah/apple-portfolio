@@ -8,7 +8,7 @@ export const Logo: React.FC<LogoProps> = ({ className = "" }) => {
   return (
     <div className={`flex items-center space-x-3 ${className}`}>
       <div className="relative">
-        <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+        <div className="w-8 h-8 bg-gradient-to-br from-blue-900 to-blue-600 rounded-lg flex items-center justify-center shadow-lg">
           <span className="text-white font-bold text-sm">RS</span>
         </div>
         <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-black"></div>

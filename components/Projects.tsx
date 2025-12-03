@@ -1,4 +1,5 @@
 import React from "react";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import Image from "next/image";
 import { ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,9 +11,45 @@ interface Project {
   tech: string[];
   link?: string;
   github?: string;
+  hasDemo?: boolean;
 }
 
 const projects: Project[] = [
+  {
+    title: "Vistruct",
+    description:
+      "AI-powered educational video platform that lets educators create professional videos with chat-based script editing, AI voice-over, and Manim animations.",
+    image: "/vistruct.png",
+    tech: [
+      "React",
+      "TypeScript",
+      "FastAPI",
+      "PostgreSQL",
+      "Docker",
+      "Manim",
+      "AI Voice Synthesis",
+    ],
+    github: "https://github.com/rahulSailesh-shah/Vistruct",
+    link: "https://drive.google.com/file/d/18MGKPrNjHCtFnitiacK9q8H_95TjGIop/view?usp=sharing",
+    hasDemo: true,
+  },
+  {
+    title: "Conversense",
+    description:
+      "Platform to build AI agents for real-time video call Q&A, meeting summarization, and post-meeting chat-based interaction.",
+    image: "/conversense.png",
+    tech: [
+      "Golang",
+      "Gin",
+      "PostgreSQL",
+      "Livekit",
+      "Gemini Live API",
+      "Docker",
+    ],
+    github: "https://github.com/rahulSailesh-shah/conversense",
+    link: "https://vistruct-demo.com",
+    hasDemo: true,
+  },
   {
     title: "CreateAI Platform",
     description:
@@ -66,88 +103,90 @@ export const Projects: React.FC = () => {
 
         <div className="space-y-32">
           {projects.map((project, index) => (
-            <div
-              key={index}
-              className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${
-                index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
-              }`}
-            >
+            <ScrollReveal key={index} variant="fade-up" delay={index * 0.1}>
               <div
-                className={`space-y-6 ${
-                  index % 2 === 1 ? "lg:col-start-2" : ""
+                className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${
+                  index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
                 }`}
               >
-                <h3 className="text-3xl md:text-4xl font-light tracking-tight">
-                  {project.title}
-                </h3>
-                <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-3 py-1 bg-gray-200 dark:bg-gray-800 rounded-full text-sm font-medium"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex gap-4">
-                  {project.link && (
-                    <Button
-                      variant="outline"
-                      className="group border-gray-300 dark:border-gray-700 rounded-full px-6 py-3 transition-all duration-300"
-                      asChild
-                    >
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                <div
+                  className={`space-y-6 ${
+                    index % 2 === 1 ? "lg:col-start-2" : ""
+                  }`}
+                >
+                  <h3 className="text-3xl md:text-4xl font-light tracking-tight">
+                    {project.title}
+                  </h3>
+                  <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="px-3 py-1 bg-gray-200 dark:bg-gray-800 rounded-full text-sm font-medium hover-lift"
                       >
-                        <ExternalLink className="mr-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                        {project.title === "CreateAI Platform"
-                          ? "Project Details"
-                          : "Live Demo"}
-                      </a>
-                    </Button>
-                  )}
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex gap-4">
+                    {project.link && (
+                      <Button
+                        variant="outline"
+                        className="group border-gray-300 dark:border-gray-700 rounded-full px-6 py-3 transition-all duration-300 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+                        asChild
+                      >
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ExternalLink className="mr-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                          {project.title === "CreateAI Platform"
+                            ? "Project Details"
+                            : project.hasDemo
+                            ? "See Video"
+                            : "Live Demo"}
+                        </a>
+                      </Button>
+                    )}
 
-                  {project.github && (
-                    <Button
-                      variant="outline"
-                      className="group border-gray-300 dark:border-gray-700 rounded-full px-6 py-3 transition-all duration-300"
-                      asChild
-                    >
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    {project.github && (
+                      <Button
+                        variant="outline"
+                        className="group border-gray-300 dark:border-gray-700 rounded-full px-6 py-3 transition-all duration-300 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+                        asChild
                       >
-                        <Github className="mr-2 h-4 w-4" />
-                        Source Code
-                      </a>
-                    </Button>
-                  )}
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Github className="mr-2 h-4 w-4" />
+                          Source Code
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+                </div>
+                <div
+                  className={`${
+                    index % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""
+                  }`}
+                >
+                  <div className="relative group perspective-1000">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      width={600}
+                      height={400}
+                      className="w-full rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-700 group-hover:scale-[1.01] group-hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-black/50 dark:group-hover:shadow-black/80"
+                    />
+                  </div>
                 </div>
               </div>
-              <div
-                className={`${
-                  index % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""
-                }`}
-              >
-                <div className="relative group">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    width={600}
-                    height={400}
-                    className="w-full rounded-2xl shadow-2xl transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-black/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-              </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 
@@ -155,7 +194,7 @@ export const Projects: React.FC = () => {
           <Button
             variant="outline"
             size="lg"
-            className="group border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full px-8 py-6 text-base font-medium transition-all duration-300 transform hover:scale-105"
+            className="group border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 rounded-full px-8 py-6 text-base font-medium transition-all duration-300 transform hover:scale-105"
             asChild
           >
             <a

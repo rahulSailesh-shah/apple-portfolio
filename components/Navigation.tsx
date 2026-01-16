@@ -1,18 +1,14 @@
 import React from "react";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
 
 interface NavigationProps {
-  darkMode: boolean;
-  setDarkMode: (darkMode: boolean) => void;
   mobileMenuOpen: boolean;
   setMobileMenuOpen: (open: boolean) => void;
 }
 
 export const Navigation: React.FC<NavigationProps> = ({
-  darkMode,
-  setDarkMode,
   mobileMenuOpen,
   setMobileMenuOpen,
 }) => {
@@ -28,9 +24,9 @@ export const Navigation: React.FC<NavigationProps> = ({
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full z-50 transition-all duration-200 ${
         scrolled
-          ? "bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200/20 dark:border-gray-800/20 shadow-sm"
+          ? "glass-panel border-b border-white/10 shadow-xl bg-black/80"
           : "bg-transparent border-transparent"
       }`}
     >
@@ -39,59 +35,35 @@ export const Navigation: React.FC<NavigationProps> = ({
           <Logo />
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-1">
             <a
               href="#projects"
-              className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+              className="text-sm font-medium px-4 py-2 rounded-lg hover:bg-white/5 transition-all duration-200"
             >
               Projects
             </a>
             <a
               href="#about"
-              className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+              className="text-sm font-medium px-4 py-2 rounded-lg hover:bg-white/5 transition-all duration-200"
             >
               About
             </a>
             <a
               href="#resume"
-              className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+              className="text-sm font-medium px-4 py-2 rounded-lg hover:bg-white/5 transition-all duration-200"
             >
               Experience
             </a>
             <a
               href="#contact"
-              className="text-sm font-medium hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+              className="text-sm font-medium px-4 py-2 rounded-lg hover:bg-white/5 transition-all duration-200"
             >
               Contact
             </a>
-
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setDarkMode(!darkMode)}
-              className="ml-4"
-            >
-              {darkMode ? (
-                <Sun className="h-4 w-4" />
-              ) : (
-                <Moon className="h-4 w-4" />
-              )}
-            </Button>
           </div>
 
           {/* Mobile Navigation */}
           <div className="md:hidden flex items-center space-x-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setDarkMode(!darkMode)}
-            >
-              {darkMode ? (
-                <Sun className="h-4 w-4" />
-              ) : (
-                <Moon className="h-4 w-4" />
-              )}
-            </Button>
             <Button
               variant="ghost"
               size="icon"
@@ -109,32 +81,32 @@ export const Navigation: React.FC<NavigationProps> = ({
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white dark:bg-black border-t border-gray-200/20 dark:border-gray-800/20">
-          <div className="px-6 py-4 space-y-4">
+        <div className="md:hidden glass-panel border-t border-white/10 backdrop-blur-xl">
+          <div className="px-6 py-4 space-y-2">
             <a
               href="#projects"
-              className="block text-sm font-medium"
+              className="block text-sm font-medium px-4 py-2 rounded-lg hover:bg-white/5 transition-all duration-200"
               onClick={() => setMobileMenuOpen(false)}
             >
               Projects
             </a>
             <a
               href="#about"
-              className="block text-sm font-medium"
+              className="block text-sm font-medium px-4 py-2 rounded-lg hover:bg-white/5 transition-all duration-200"
               onClick={() => setMobileMenuOpen(false)}
             >
               About
             </a>
             <a
               href="#resume"
-              className="block text-sm font-medium"
+              className="block text-sm font-medium px-4 py-2 rounded-lg hover:bg-white/5 transition-all duration-200"
               onClick={() => setMobileMenuOpen(false)}
             >
               Experience
             </a>
             <a
               href="#contact"
-              className="block text-sm font-medium"
+              className="block text-sm font-medium px-4 py-2 rounded-lg hover:bg-white/5 transition-all duration-200"
               onClick={() => setMobileMenuOpen(false)}
             >
               Contact

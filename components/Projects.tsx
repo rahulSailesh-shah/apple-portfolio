@@ -1,5 +1,4 @@
 import React from "react";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import Image from "next/image";
 import { ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -88,53 +87,54 @@ export const Projects: React.FC = () => {
   return (
     <section
       id="projects"
-      className="py-20 px-6 lg:px-8 bg-gray-50 dark:bg-gray-950"
+      className="relative py-[80px] md:py-[100px] lg:py-[120px] px-6 lg:px-8 overflow-hidden bg-black"
     >
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-light tracking-tight mb-4">
+      <div className="relative z-10 max-w-[1200px] lg:max-w-[1400px] mx-auto">
+        <div className="text-center mb-24">
+          <h2 className="text-[48px] md:text-[56px] lg:text-[64px] font-bold tracking-tight mb-8 text-gradient">
             Featured Projects
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Here are some projects I' worked on. Due to academic policies or
+          <p className="text-[18px] text-white/70 max-w-2xl mx-auto">
+            Here are some projects I've worked on. Due to academic policies or
             non-disclosures, some of the code isn't posted.
           </p>
         </div>
 
         <div className="space-y-32">
           {projects.map((project, index) => (
-            <ScrollReveal key={index} variant="fade-up" delay={index * 0.1}>
+            <div
+              key={index}
+              className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${
+                index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
+              }`}
+            >
               <div
-                className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${
-                  index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
+                className={`space-y-6 ${
+                  index % 2 === 1 ? "lg:col-start-2" : ""
                 }`}
               >
-                <div
-                  className={`space-y-6 ${
-                    index % 2 === 1 ? "lg:col-start-2" : ""
-                  }`}
-                >
-                  <h3 className="text-3xl md:text-4xl font-light tracking-tight">
+                <div className="glass-card p-8 space-y-6">
+                  <h3 className="text-[32px] md:text-[36px] font-bold tracking-tight text-gradient-blue">
                     {project.title}
                   </h3>
-                  <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                  <p className="text-[18px] text-white/70 leading-relaxed">
                     {project.description}
                   </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-3">
                     {project.tech.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="px-3 py-1 bg-gray-200 dark:bg-gray-800 rounded-full text-sm font-medium hover-lift"
+                        className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[16px] text-white/80 hover:bg-white/10 hover:border-white/20 transition-all duration-200"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 pt-4">
                     {project.link && (
                       <Button
-                        variant="outline"
-                        className="group border-gray-300 dark:border-gray-700 rounded-full px-6 py-3 transition-all duration-300 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+                        variant="cta"
+                        className="rounded-full px-8 py-4 text-base font-semibold"
                         asChild
                       >
                         <a
@@ -142,7 +142,7 @@ export const Projects: React.FC = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <ExternalLink className="mr-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                          <ExternalLink className="mr-2 h-4 w-4" />
                           {project.title === "CreateAI Platform"
                             ? "Project Details"
                             : project.hasDemo
@@ -154,8 +154,8 @@ export const Projects: React.FC = () => {
 
                     {project.github && (
                       <Button
-                        variant="outline"
-                        className="group border-gray-300 dark:border-gray-700 rounded-full px-6 py-3 transition-all duration-300 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+                        variant="glass"
+                        className="rounded-full px-8 py-4 text-base font-medium"
                         asChild
                       >
                         <a
@@ -170,31 +170,33 @@ export const Projects: React.FC = () => {
                     )}
                   </div>
                 </div>
-                <div
-                  className={`${
-                    index % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""
-                  }`}
-                >
-                  <div className="relative group perspective-1000">
+              </div>
+              <div
+                className={`${
+                  index % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""
+                }`}
+              >
+                <div className="relative group">
+                  <div className="relative glass-card overflow-hidden rounded-2xl">
                     <Image
                       src={project.image}
                       alt={project.title}
                       width={600}
                       height={400}
-                      className="w-full rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-700 group-hover:scale-[1.01] group-hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-black/50 dark:group-hover:shadow-black/80"
+                      className="w-full"
                     />
                   </div>
                 </div>
               </div>
-            </ScrollReveal>
+            </div>
           ))}
         </div>
 
-        <div className="mt-20 text-center">
+        <div className="mt-24 text-center">
           <Button
-            variant="outline"
+            variant="cta"
             size="lg"
-            className="group border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 rounded-full px-8 py-6 text-base font-medium transition-all duration-300 transform hover:scale-105"
+            className="rounded-full px-10 py-7 text-lg font-semibold"
             asChild
           >
             <a
@@ -202,7 +204,7 @@ export const Projects: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <ExternalLink className="mr-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              <ExternalLink className="mr-2 h-5 w-5" />
               View More Projects
             </a>
           </Button>

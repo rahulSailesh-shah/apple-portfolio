@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { LoadingScreen } from "@/components/LoadingScreen";
+import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
@@ -9,77 +8,33 @@ import { Resume } from "@/components/Resume";
 import { Projects } from "@/components/Projects";
 import { Contact } from "@/components/Contact";
 import { Heart } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 export default function Portfolio() {
-  const [darkMode, setDarkMode] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
-  //   const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
-
-  //   // Loading simulation
-  //   useEffect(() => {
-  //     const timer = setTimeout(() => {
-  //       setIsLoading(false);
-  //     }, 1000); // 1 second loading time
-
-  //     return () => clearTimeout(timer);
-  //   }, []);
 
   return (
-    <div
-      className={`min-h-screen transition-colors duration-300 ${
-        darkMode ? "dark" : ""
-      }`}
-    >
-      {/* <LoadingScreen isLoading={isLoading} /> */}
-
-      <div
-        // className={`bg-white dark:bg-black text-black dark:text-white transition-opacity duration-500 ${
-        //   isLoading ? "opacity-0" : "opacity-100"
-        //           }`}
-
-        className={cn(
-          "bg-white dark:bg-black text-black dark:text-white transition-opacity duration-500"
-          //   isLoading ? "opacity-0" : "opacity-100"
-        )}
-      >
+    <div className="min-h-screen bg-black dark">
+      <div className="bg-black text-white">
         <Navigation
-          darkMode={darkMode}
-          setDarkMode={setDarkMode}
           mobileMenuOpen={mobileMenuOpen}
           setMobileMenuOpen={setMobileMenuOpen}
         />
-        <Hero scrollY={scrollY} darkMode={darkMode} />
+        <Hero />
         <About />
         <Resume />
         <Projects />
         <Contact />
 
         {/* Footer */}
-        <footer className="py-12 px-6 lg:px-8 border-t border-gray-200 dark:border-gray-800">
-          <div className="max-w-7xl mx-auto text-center">
-            <p className="text-gray-600 dark:text-gray-400 flex items-center justify-center gap-2">
-              © {new Date().getFullYear()} Rahul Shah. Inspired by
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-              </svg>
-              and built with{" "}
-              <Heart className="h-4 w-4 text-red-500" fill="currentColor" />
+        <footer className="relative py-12 px-6 lg:px-8 border-t border-white/10 bg-black">
+          <div className="max-w-[1200px] lg:max-w-[1400px] mx-auto text-center">
+            <p className="text-white/60 flex items-center justify-center gap-2 flex-wrap text-[16px]">
+              <span>© {new Date().getFullYear()} Rahul Shah</span>
+              <span className="text-white/40">•</span>
+              <span>
+                Built with{" "}
+                <Heart className="inline h-4 w-4 text-white" fill="currentColor" />
+              </span>
             </p>
           </div>
         </footer>

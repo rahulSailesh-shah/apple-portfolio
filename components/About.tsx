@@ -1,149 +1,279 @@
 import React from "react";
-import Image from "next/image";
+import TechBadge from "./ui/TechBadge";
+import BentoCard from "@/components/ui/BentoCard";
+import {
+  Coffee,
+  Terminal,
+  Cpu,
+  Monitor,
+  Heart,
+  Globe,
+  Zap,
+  User,
+} from "lucide-react";
 
-export const About: React.FC = () => {
+export interface TechStackItem {
+  name: string;
+  category: string;
+}
+
+export interface AboutContent {
+  headline: string;
+  paragraphs: string[];
+  hobbies: string[];
+  techStack: {
+    languages: string[];
+    cloud: string[];
+    tools: string[];
+  };
+}
+
+export const ABOUT_DATA: AboutContent = {
+  headline: "About Me",
+  paragraphs: [
+    "I'm a Full Stack Developer who fell into software through an unexpected web development elective. What started as curiosity transformed into a career of building full-scale applications that redefine user experiences.",
+    "My journey has bridged the gap between nimble startups and global MNCs. I've designed and deployed systems for IoT smart locks, AI-powered healthcare platforms, and enterprise SaaS for manufacturing. My focus is on architecture that scales and automation that simplifies.",
+    "Beyond the terminal, I'm an advocate for clean code and impactful solutions. I believe every line written should serve a purpose and every pixel rendered should delight."
+  ],
+  hobbies: ["Hiking", "Table Tennis", "Coffee Brewing"],
+  techStack: {
+    languages: [
+      "Java", "Go", "TypeScript", "Python", "Node.js", "React", "React Native", 
+      "Next.js", "GraphQL", "FastAPI", "Spring Boot", "GenAI", "LangChain"
+    ],
+    cloud: [
+      "AWS API Gateway", "AWS Lambda", "AWS S3", "AWS EC2", "AWS ECS", 
+      "CloudFormation", "AWS CDK", "Docker", "MySQL", "PostgreSQL", 
+      "Redis", "DynamoDB", "Kafka", "Elasticsearch", "MongoDB", "RabbitMQ"
+    ],
+    tools: [
+      "Git", "Jenkins", "Kubernetes", "Selenium", "Prometheus", "Grafana"
+    ]
+  }
+};
+
+
+const AboutSection: React.FC = () => {
   return (
-    <section
-      id="about"
-      className="relative py-[80px] md:py-[100px] lg:py-[120px] px-6 lg:px-8 overflow-hidden bg-black"
-    >
-      <div className="relative z-10 max-w-[1200px] lg:max-w-[1400px] mx-auto">
-        <div className="grid lg:grid-cols-5 gap-16 items-start">
-          <div className="lg:col-span-3">
-            <div className="space-y-8">
-              <h2 className="text-[48px] md:text-[56px] lg:text-[64px] font-bold tracking-tight mb-12 text-gradient">
-                About Me
-              </h2>
-              <div className="space-y-6 text-[18px] text-white/80 leading-relaxed">
-                <p>
-                  I'm a Full Stack Developer who got into software through an
-                  unexpected web development elective in college. Since then,
-                  I've gone from small projects to building full-scale
-                  applications that improve real-world user experiences.
-                </p>
-                <p>
-                  I've worked across both nimble startups and global MNCs,
-                  contributing to products in IoT (smart locks), AI-powered
-                  platforms, and enterprise SaaS for manufacturing and
-                  healthcare. My focus is on scalable backends, cloud systems,
-                  and automation with a drive to write clean, impactful code.
-                </p>
-                <p>
-                  Outside of coding, you'll find me hiking, playing table
-                  tennis, or brainstorming over coffee.
-                </p>
-              </div>
+    <section id="about" className="relative space-y-16 py-12">
+      {/* Section Header */}
+      <div className="flex flex-col gap-4 max-w-3xl">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 w-fit">
+          <User size={12} className="text-[hsl(var(--hero-glow))]" />
+          <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/50">About Me</span>
+        </div>
+        <h2 className="text-4xl md:text-6xl font-bold tracking-tighter">
+          The Story.
+        </h2>
+        <p className="text-white/40 text-base md:text-lg font-light leading-relaxed">
+          A journey through code, creativity, and continuous learning.
+        </p>
+      </div>
 
-              {/* Skills Section */}
-              <div className="space-y-6 mt-16">
-                <h3 className="text-[28px] md:text-[32px] font-bold text-white mb-8">
-                  Core Technologies
-                </h3>
-
-                <div className="space-y-6">
-                  <div className="glass-card p-8">
-                    <h4 className="text-[20px] md:text-[24px] font-semibold mb-6 text-white">
-                      Programming Languages & Frameworks
-                    </h4>
-                    <div className="flex flex-wrap gap-3">
-                      {[
-                        "Java",
-                        "Go",
-                        "TypeScript",
-                        "Python",
-                        "Node.js",
-                        "React",
-                        "React Native",
-                        "Next.js",
-                        "GraphQL",
-                        "FastAPI",
-                        "Spring Boot",
-                        "GenAI",
-                        "Autogen",
-                        "LangChain",
-                      ].map((skill) => (
-                        <span
-                          key={skill}
-                          className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[16px] text-white/80 hover:bg-white/10 hover:border-white/20 transition-all duration-200"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="glass-card p-8">
-                    <h4 className="text-[20px] md:text-[24px] font-semibold mb-6 text-white">
-                      Cloud & Infrastructure
-                    </h4>
-                    <div className="flex flex-wrap gap-3">
-                      {[
-                        "AWS API Gateway",
-                        "AWS Lambda",
-                        "AWS S3",
-                        "AWS EC2",
-                        "AWS ECS",
-                        "AWS CloudFormation",
-                        "AWS CDK",
-                        "Docker",
-                        "MySQL",
-                        "PostgreSQL",
-                        "Redis",
-                        "DynamoDB",
-                        "Apache Kafka",
-                        "Elasticsearch",
-                        "MongoDB",
-                        "RabbitMQ",
-                      ].map((skill) => (
-                        <span
-                          key={skill}
-                          className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[16px] text-white/80 hover:bg-white/10 hover:border-white/20 transition-all duration-200"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="glass-card p-8">
-                    <h4 className="text-[20px] md:text-[24px] font-semibold mb-6 text-white">
-                      Tools & DevOps
-                    </h4>
-                    <div className="flex flex-wrap gap-3">
-                      {[
-                        "Git",
-                        "Jenkins",
-                        "Kubernetes",
-                        "Selenium",
-                        "Prometheus",
-                        "Grafana",
-                      ].map((skill) => (
-                        <span
-                          key={skill}
-                          className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[16px] text-white/80 hover:bg-white/10 hover:border-white/20 transition-all duration-200"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+      {/* Bento Grid Redesign */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
+        {/* Profile / Hero Card */}
+        <div className="md:col-span-12 lg:col-span-4 h-full">
+          <div className="glass-card p-0 overflow-hidden h-full flex flex-col relative group">
+            <div className="aspect-[4/5] overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop"
+                alt="Identity"
+                className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
+              />
+            </div>
+            <div className="p-6 space-y-1 bg-gradient-to-t from-black via-black/80 to-transparent absolute bottom-0 left-0 right-0">
+              <p className="text-xs text-white/40 font-mono tracking-widest uppercase">
+                Current Status
+              </p>
+              <div className="flex items-center gap-3">
+                <h3 className="text-xl font-bold">Building the future</h3>
+                <div className="flex gap-1">
+                  <div className="w-1 h-1 rounded-full bg-[hsl(var(--hero-glow))]" />
+                  <div className="w-1 h-1 rounded-full bg-[hsl(var(--hero-glow))]/50" />
+                  <div className="w-1 h-1 rounded-full bg-[hsl(var(--hero-glow))]/20" />
                 </div>
               </div>
             </div>
           </div>
-          <div className="lg:col-span-2 relative">
-            <div className="relative group">
-              <Image
-                src="/profile.jpeg"
-                alt="Profile"
-                width={400}
-                height={500}
-                className="relative w-full max-w-md mx-auto rounded-2xl shadow-2xl glass-card"
-              />
+        </div>
+
+        {/* Core Philosophy / Bio */}
+        <BentoCard
+          className="md:col-span-8 lg:col-span-8 group"
+          title="The Protocol"
+          icon={
+            <Terminal
+              size={18}
+              className="group-hover:text-[hsl(var(--hero-glow))]"
+            />
+          }
+        >
+          <div className="flex flex-col h-full space-y-6">
+            <div className="space-y-4">
+              {ABOUT_DATA.paragraphs.slice(0, 3).map((p, i) => (
+                <p
+                  key={i}
+                  className="text-white/60 text-lg leading-relaxed font-light"
+                >
+                  {p}
+                </p>
+              ))}
+            </div>
+
+            <div className="mt-auto grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8">
+              <div className="flex items-center gap-4 group/item">
+                <div className="p-2 rounded-lg bg-white/[0.01] group-hover/item:bg-white/[0.02] transition-colors">
+                  <Monitor size={16} className="text-[hsl(var(--hero-glow))]" />
+                </div>
+                <div>
+                  <p className="text-xs text-white/30 uppercase tracking-tighter">
+                    Availability
+                  </p>
+                  <p className="text-sm font-medium">Q3 2024</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 group/item">
+                <div className="p-2 rounded-lg bg-white/[0.01] group-hover/item:bg-white/[0.02] transition-colors">
+                  <Globe size={16} className="text-[hsl(var(--hero-accent))]" />
+                </div>
+                <div>
+                  <p className="text-xs text-white/30 uppercase tracking-tighter">
+                    Location
+                  </p>
+                  <p className="text-sm font-medium">Remote / GMT+8</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 group/item">
+                <div className="p-2 rounded-lg bg-white/[0.01] group-hover/item:bg-white/[0.02] transition-colors">
+                  <Zap size={16} className="text-white" />
+                </div>
+                <div>
+                  <p className="text-xs text-white/30 uppercase tracking-tighter">
+                    Response
+                  </p>
+                  <p className="text-sm font-medium">&lt; 4 Hours</p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </BentoCard>
+
+        {/* Tech Stack Horizontal - Scroll Style or Grid */}
+        <BentoCard
+          className="md:col-span-12 group"
+          title="Engineered With"
+          icon={
+            <Cpu
+              size={18}
+              className="group-hover:text-[hsl(var(--hero-accent))]"
+            />
+          }
+        >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="space-y-4">
+              <h4 className="text-[10px] uppercase tracking-widest text-white/30 font-bold flex items-center gap-2">
+                <div className="w-1 h-1 bg-[hsl(var(--hero-glow))] rounded-full" />
+                Language Core
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {ABOUT_DATA.techStack.languages.map((t) => (
+                  <TechBadge key={t} name={t} />
+                ))}
+              </div>
+            </div>
+            <div className="space-y-4">
+              <h4 className="text-[10px] uppercase tracking-widest text-white/30 font-bold flex items-center gap-2">
+                <div className="w-1 h-1 bg-[hsl(var(--hero-accent))] rounded-full" />
+                Cloud Systems
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {ABOUT_DATA.techStack.cloud.map((t) => (
+                  <TechBadge key={t} name={t} />
+                ))}
+              </div>
+            </div>
+            <div className="space-y-4">
+              <h4 className="text-[10px] uppercase tracking-widest text-white/30 font-bold flex items-center gap-2">
+                <div className="w-1 h-1 bg-white rounded-full" />
+                Orchestration
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {ABOUT_DATA.techStack.tools.map((t) => (
+                  <TechBadge key={t} name={t} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </BentoCard>
+
+        {/* Philosophy Card - Aesthetic */}
+        <BentoCard
+          className="md:col-span-7 bg-[hsl(var(--hero-glow))]/[0.015] hover:bg-[hsl(var(--hero-glow))]/[0.03] transition-colors"
+          title="Philosophy"
+          icon={<Heart size={18} className="text-[hsl(var(--hero-glow))]" />}
+        >
+          <div className="flex flex-col justify-center h-full space-y-4">
+            <p className="text-3xl font-bold text-white/85">
+              "The best code is the code that isn't written. The next best is
+              the code that is easy to delete."
+            </p>
+            <p className="text-white/40 text-sm font-mono">
+              — Engineering Manifesto v2.4
+            </p>
+          </div>
+        </BentoCard>
+
+        {/* Life Card */}
+        <BentoCard
+          className="md:col-span-5 relative group overflow-hidden"
+          title="Environment"
+          icon={
+            <Coffee
+              size={18}
+              className="group-hover:rotate-12 transition-transform"
+            />
+          }
+        >
+          <div className="flex flex-col h-full gap-6">
+            <p className="text-white/60 font-light">
+              Equilibrium found in high-altitude treks, competitive table
+              tennis, and the meticulous craft of manual coffee extraction.
+            </p>
+            <div className="grid grid-cols-3 gap-2 mt-auto">
+              <div className="aspect-square rounded-lg bg-white/[0.01] group-hover:bg-white/[0.02] overflow-hidden transition-colors">
+                <img
+                  src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop"
+                  className="w-full h-full object-cover"
+                  alt="Coffee"
+                />
+              </div>
+              <div className="aspect-square rounded-lg bg-white/[0.01] group-hover:bg-white/[0.02] overflow-hidden transition-colors">
+                <img
+                  src="https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070&auto=format&fit=crop"
+                  className="w-full h-full object-cover"
+                  alt="Hiking"
+                />
+              </div>
+              <div className="aspect-square rounded-lg bg-white/[0.01] group-hover:bg-white/[0.02] overflow-hidden transition-colors">
+                <img
+                  src="https://images.unsplash.com/photo-1540555700478-4be289fbecee?q=80&w=2070&auto=format&fit=crop"
+                  className="w-full h-full object-cover"
+                  alt="Tennis"
+                />
+              </div>
+            </div>
+          </div>
+        </BentoCard>
       </div>
     </section>
+  );
+};
+
+
+export const About = () => {
+  return (
+        <AboutSection />
+
   );
 };

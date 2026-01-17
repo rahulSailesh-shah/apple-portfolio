@@ -1,75 +1,82 @@
-import React from "react";
-import { Mail, Github, Linkedin, Phone, Twitter } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
+import React from 'react';
+import { 
+  Mail, 
+  PhoneCall, 
+  Github, 
+  Linkedin, 
+  Twitter, 
+  ArrowRight,
+  MessageSquare
+} from 'lucide-react';
 
 export const Contact: React.FC = () => {
   return (
-    <section
-      id="contact"
-      className="relative py-[80px] md:py-[100px] lg:py-[120px] px-6 lg:px-8 overflow-hidden bg-black"
-    >
-      <div className="relative z-10 max-w-[1200px] lg:max-w-[1400px] mx-auto text-center">
-        <h2 className="text-[48px] md:text-[56px] lg:text-[64px] font-bold tracking-tight mb-8 text-gradient">
-          Let's Connect
-        </h2>
-        <p className="text-[18px] text-white/70 mb-16 max-w-2xl mx-auto">
-          I'm always interested in discussing new opportunities, interesting
-          projects, or just talking about technology.
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
-          <Button
-            variant="cta"
-            size="lg"
-            className="rounded-full px-10 py-7 text-lg font-semibold"
-            asChild
-          >
-            <a href="mailto:shah.rahulsailesh@gmail.com">
-              <Mail className="mr-2 h-5 w-5" />
-              Send Email
-            </a>
-          </Button>
-          <Button
-            variant="glass"
-            size="lg"
-            className="rounded-full px-10 py-7 text-lg font-medium"
-            asChild
-          >
-            <a
-              href="https://calendly.com/shah-rahulsailesh/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Phone className="mr-2 h-5 w-5" />
-              Schedule Call
-            </a>
-          </Button>
-        </div>
-
-        <div className="flex justify-center space-x-8">
-          <a
-            href="https://github.com/rahulSailesh-shah"
-            target="_blank"
-            className="glass-panel p-4 rounded-xl text-white/60 hover:text-white hover:bg-white/10 transition-all duration-200"
-          >
-            <Github className="h-6 w-6" />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/rahul-shah17/"
-            target="_blank"
-            className="glass-panel p-4 rounded-xl text-white/60 hover:text-white hover:bg-white/10 transition-all duration-200"
-          >
-            <Linkedin className="h-6 w-6" />
-          </a>
-          <a
-            href="https://x.com/rahul_shah107"
-            target="_blank"
-            className="glass-panel p-4 rounded-xl text-white/60 hover:text-white hover:bg-white/10 transition-all duration-200"
-          >
-            <Twitter className="h-6 w-6" />
-          </a>
-        </div>
+    <section id="contact" className="relative space-y-16 py-12">
+      {/* Background Ambient Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[hsl(var(--hero-glow))]/10 blur-[120px] rounded-full pointer-events-none -z-10" />
+      
+      {/* Section Header */}
+      <div className="flex flex-col gap-4 max-w-3xl">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 w-fit">
+            <MessageSquare size={12} className="text-[hsl(var(--hero-glow))]" />
+            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/50">Connectivity</span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter">
+            The Connection.
+          </h2>
+          <p className="text-white/40 text-base md:text-lg font-light leading-relaxed">
+            I'm always interested in discussing new opportunities, interesting projects, 
+            or just talking about technology and system architecture.
+          </p>
       </div>
+
+      {/* Primary Action Buttons */}
+      <div className="flex flex-col justify-between sm:flex-row items-start gap-4 pt-4">
+         {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row items-center gap-4">
+          <a 
+            href="mailto:hello@example.com"
+            className="group relative flex items-center gap-2 px-8 py-4 rounded-xl bg-white text-black font-semibold text-sm uppercase tracking-tight code-text transition-all hover:scale-105 active:scale-95"
+          >
+            <Mail size={16} />
+            <span>Send Email</span>
+            <div className="absolute inset-0 bg-white blur-xl opacity-0 group-hover:opacity-20 transition-opacity rounded-xl" />
+          </a>
+          
+          <a 
+            href="#"
+            className="flex items-center gap-3 px-8 py-4 rounded-xl bg-white/5 border border-white/10 text-white text-sm uppercase tracking-tight code-text transition-all hover:bg-white/10 hover:border-white/20 active:scale-95"
+          >
+            <PhoneCall size={16} className="text-white/40" />
+            <span>Schedule Call</span>
+          </a>
+        </div>
+
+
+        {/* Social Links */}
+        <div className="flex items-center gap-4">
+          {[
+            { icon: <Github size={20} />, href: "#", label: "GitHub" },
+            { icon: <Linkedin size={20} />, href: "#", label: "LinkedIn" },
+            { icon: <Twitter size={20} />, href: "#", label: "Twitter" }
+          ].map((social, i) => (
+            <a 
+              key={i}
+              href={social.href}
+              aria-label={social.label}
+              className="w-14 h-14 flex items-center justify-center rounded-xl bg-white/[0.03] border border-white/5 text-white/40 transition-all hover:text-white hover:bg-white/10 hover:border-white/20 group"
+            >
+              <div className="group-hover:scale-110 transition-transform">
+                {social.icon}
+              </div>
+            </a>
+          ))}
+        </div>
+       
+      </div>
+
     </section>
   );
 };
+

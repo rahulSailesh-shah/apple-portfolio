@@ -1,215 +1,256 @@
-import React from "react";
-import Image from "next/image";
-import { ExternalLink, Github } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
+import React, { useState, useMemo } from 'react';
+import TechBadge from './ui/TechBadge';
+import { 
+  Play, 
+  Github, 
+  ChevronRight, 
+  Layers, 
+  Monitor,
+  Code2,
+  ArrowUpRight
+} from 'lucide-react';
+
+const CATEGORIES = ['All', 'AI', 'Full Stack', 'Distributed Systems', 'Tools'] as const;
 interface Project {
+  id: string;
   title: string;
+  subtitle: string;
   description: string;
-  image: string;
-  tech: string[];
-  link?: string;
-  github?: string;
-  hasDemo?: boolean;
+  techStack: string[];
+  imageUrl: string;
+  videoUrl?: string;
+  sourceCodeUrl?: string;
+  category: 'AI' | 'Full Stack' | 'Distributed Systems' | 'Tools';
 }
 
-const projects: Project[] = [
+const PROJECTS_DATA: Project[] = [
   {
-    title: "Vistruct",
-    description:
-      "AI-powered educational video platform that lets educators create professional videos with chat-based script editing, AI voice-over, and Manim animations.",
-    image: "/vistruct.png",
-    tech: [
-      "React",
-      "TypeScript",
-      "FastAPI",
-      "PostgreSQL",
-      "Docker",
-      "Manim",
-      "AI Voice Synthesis",
-    ],
-    github: "https://github.com/rahulSailesh-shah/Vistruct",
-    link: "https://drive.google.com/file/d/18MGKPrNjHCtFnitiacK9q8H_95TjGIop/view?usp=sharing",
-    hasDemo: true,
+    id: 'vistruct',
+    title: 'Vistruct',
+    subtitle: 'AI-Powered Education',
+    category: 'AI',
+    description: 'AI-powered educational video platform that lets educators create professional videos with chat-based script editing, AI voice-over, and Manim animations.',
+    techStack: ['React', 'TypeScript', 'FastAPI', 'PostgreSQL', 'Docker', 'Manim', 'AI Voice Synthesis'],
+    imageUrl: 'https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=2070&auto=format&fit=crop',
+    videoUrl: '#',
+    sourceCodeUrl: '#'
   },
   {
-    title: "Conversense",
-    description:
-      "Platform to build AI agents for real-time video call Q&A, meeting summarization, and post-meeting chat-based interaction.",
-    image: "/conversense.png",
-    tech: [
-      "Golang",
-      "Gin",
-      "PostgreSQL",
-      "Livekit",
-      "Gemini Live API",
-      "Docker",
-    ],
-    github: "https://github.com/rahulSailesh-shah/conversense",
-    link: "https://vistruct-demo.com",
-    hasDemo: true,
+    id: 'conversense',
+    title: 'Conversense',
+    subtitle: 'Real-time AI Agents',
+    category: 'AI',
+    description: 'Platform to build AI agents for real-time video call Q&A, meeting summarization, and post-meeting chat-based interaction.',
+    techStack: ['Golang', 'Gin', 'PostgreSQL', 'Livekit', 'Gemini Live API', 'Docker'],
+    imageUrl: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=2106&auto=format&fit=crop',
+    videoUrl: '#',
+    sourceCodeUrl: '#'
   },
   {
-    title: "CreateAI Platform",
-    description:
-      "Built scalable LLM platforms for 150K+ users that lets users create and share custom AI chatbots and agents trained on their own data.",
-    image: "/createAI.png",
-    tech: [
-      "DynamoDB",
-      "API Gateway",
-      "Web Sockets",
-      "Python",
-      "FastAPI",
-      "React",
-    ],
-    link: "https://ai.asu.edu/technical-foundation",
+    id: 'nexus-cloud',
+    title: 'Nexus Cloud',
+    subtitle: 'Infrastructure Orchestrator',
+    category: 'Distributed Systems',
+    description: 'A cloud-native infrastructure management tool for automated deployment of microservices across hybrid cloud environments.',
+    techStack: ['Python', 'Kubernetes', 'AWS CDK', 'Terraform', 'Prometheus'],
+    imageUrl: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=2070&auto=format&fit=crop',
+    videoUrl: '#',
+    sourceCodeUrl: '#'
   },
   {
-    title: "FigPro",
-    description:
-      "Built a real-time collaborative Figma clone with multi-cursor support, user tracking, comments, shape tools, and image uploads.",
-    image: "/figma.webp",
-    tech: ["Next.js", "Liveblocks", "Fabric.js", "Tailwind"],
-    github: "https://github.com/rahulSailesh-shah/Figma-Clone",
-    link: "https://figma-clone-coral.vercel.app/",
+    id: 'sentinel-ai',
+    title: 'Sentinel AI',
+    subtitle: 'Security Monitor',
+    category: 'AI',
+    description: 'Real-time security auditing tool using LLMs to detect vulnerabilities in smart contracts and cloud configurations.',
+    techStack: ['TypeScript', 'LangChain', 'FastAPI', 'Redis', 'OpenAI'],
+    imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop',
+    videoUrl: '#',
+    sourceCodeUrl: '#'
   },
   {
-    title: "Route Tracker",
-    description:
-      "Developed a React Native mobile app that tracks and records routes using GPS, with MongoDB storage for review.",
-    image: "/route.webp",
-    tech: ["React Native", "Node.js", "MongoDB", "Express"],
-    github: "https://github.com/rahulSailesh-shah/Route-Tracker",
-  },
+    id: 'flux-db',
+    title: 'FluxDB',
+    subtitle: 'High-Performance Store',
+    category: 'Distributed Systems',
+    description: 'A custom distributed key-value store optimized for high-throughput IoT data ingestion.',
+    techStack: ['Go', 'gRPC', 'Raft Consensus', 'RocksDB', 'Docker'],
+    imageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop',
+    videoUrl: '#',
+    sourceCodeUrl: '#'
+  }
 ];
 
-export const Projects: React.FC = () => {
-  return (
-    <section
-      id="projects"
-      className="relative py-[80px] md:py-[100px] lg:py-[120px] px-6 lg:px-8 overflow-hidden bg-black"
-    >
-      <div className="relative z-10 max-w-[1200px] lg:max-w-[1400px] mx-auto">
-        <div className="text-center mb-24">
-          <h2 className="text-[48px] md:text-[56px] lg:text-[64px] font-bold tracking-tight mb-8 text-gradient">
-            Featured Projects
-          </h2>
-          <p className="text-[18px] text-white/70 max-w-2xl mx-auto">
-            Here are some projects I've worked on. Due to academic policies or
-            non-disclosures, some of the code isn't posted.
-          </p>
-        </div>
 
-        <div className="space-y-32">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${
-                index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
+export const Projects: React.FC = () => {
+  const [activeCategory, setActiveCategory] = useState<typeof CATEGORIES[number]>('All');
+  const [selectedProjectId, setSelectedProjectId] = useState(PROJECTS_DATA[0].id);
+
+  const filteredProjects = useMemo(() => {
+    return activeCategory === 'All' 
+      ? PROJECTS_DATA 
+      : PROJECTS_DATA.filter(p => p.category === activeCategory);
+  }, [activeCategory]);
+
+  const activeProject = useMemo(() => {
+    return PROJECTS_DATA.find(p => p.id === selectedProjectId) || PROJECTS_DATA[0];
+  }, [selectedProjectId]);
+
+  return (
+    <section id="projects" className="relative space-y-16 py-12">
+      {/* Background Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[hsl(var(--hero-glow))]/5 blur-[120px] rounded-full pointer-events-none -z-10" />
+
+      {/* Section Header */}
+      <div className="flex flex-col gap-4 max-w-3xl">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 w-fit">
+          <Layers size={12} className="text-[hsl(var(--hero-glow))]" />
+          <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/50">Portfolio</span>
+        </div>
+        <h2 className="text-4xl md:text-6xl font-bold tracking-tighter">
+          The Creations.
+        </h2>
+        <p className="text-white/40 text-base md:text-lg font-light leading-relaxed">
+          A selection of my architectural experiments and production-ready systems. 
+          Use the navigator to explore different domains.
+        </p>
+      </div>
+
+      {/* Category Navigation Bar */}
+      <div className="flex justify-center mb-12">
+        <div className="inline-flex items-center p-1 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl">
+          {CATEGORIES.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => {
+                setActiveCategory(cat);
+                const projectsInCat = cat === 'All' ? PROJECTS_DATA : PROJECTS_DATA.filter(p => p.category === cat);
+                if (projectsInCat.length > 0) setSelectedProjectId(projectsInCat[0].id);
+              }}
+              className={`px-4 md:px-6 py-2 rounded-xl text-xs md:text-sm font-bold tracking-widest uppercase transition-all duration-300 ${
+                activeCategory === cat 
+                  ? 'bg-white text-black shadow-lg' 
+                  : 'text-white/40 hover:text-white/70'
               }`}
             >
-              <div
-                className={`space-y-6 ${
-                  index % 2 === 1 ? "lg:col-start-2" : ""
-                }`}
-              >
-                <div className="glass-card p-8 space-y-6">
-                  <h3 className="text-[32px] md:text-[36px] font-bold tracking-tight text-gradient-blue">
-                    {project.title}
-                  </h3>
-                  <p className="text-[18px] text-white/70 leading-relaxed">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-3">
-                    {project.tech.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[16px] text-white/80 hover:bg-white/10 hover:border-white/20 transition-all duration-200"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex gap-4 pt-4">
-                    {project.link && (
-                      <Button
-                        variant="cta"
-                        className="rounded-full px-8 py-4 text-base font-semibold"
-                        asChild
-                      >
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          {project.title === "CreateAI Platform"
-                            ? "Project Details"
-                            : project.hasDemo
-                            ? "See Video"
-                            : "Live Demo"}
-                        </a>
-                      </Button>
-                    )}
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
 
-                    {project.github && (
-                      <Button
-                        variant="glass"
-                        className="rounded-full px-8 py-4 text-base font-medium"
-                        asChild
-                      >
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Github className="mr-2 h-4 w-4" />
-                          Source Code
-                        </a>
-                      </Button>
+      {/* Main Project Stage */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        
+        {/* Project Selector Sidebar (Scrollable List) */}
+        <div className="lg:col-span-4 order-2 lg:order-1 flex flex-col gap-3 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
+          {filteredProjects.map((project) => (
+            <button
+              key={project.id}
+              onClick={() => setSelectedProjectId(project.id)}
+              className={`flex flex-col p-6 text-left transition-all duration-500 rounded-2xl border ${
+                selectedProjectId === project.id 
+                  ? 'bg-white/10 border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.05)]' 
+                  : 'bg-white/[0.02] border-white/5 opacity-50 hover:opacity-100'
+              }`}
+            >
+              <div className="flex items-center justify-between w-full mb-2">
+                <span className="text-[10px] font-mono text-[hsl(var(--hero-glow))] uppercase tracking-widest">
+                  {project.category}
+                </span>
+                {selectedProjectId === project.id && <ChevronRight size={16} className="text-white" />}
+              </div>
+              <h4 className="text-xl font-bold text-white mb-1">{project.title}</h4>
+              <p className="text-white/40 text-xs font-light line-clamp-1">{project.subtitle}</p>
+            </button>
+          ))}
+          
+          {filteredProjects.length === 0 && (
+            <div className="p-12 text-center glass-card">
+              <Code2 className="mx-auto mb-4 text-white/10" size={32} />
+              <p className="text-white/20 font-mono text-xs uppercase tracking-widest">No Projects Found</p>
+            </div>
+          )}
+        </div>
+
+        {/* Detailed Project View */}
+        <div className="lg:col-span-8 order-1 lg:order-2">
+          <div className="glass-card h-full flex flex-col overflow-hidden group">
+            
+            {/* Project Image Header */}
+            <div className="relative h-[240px] md:h-[350px] overflow-hidden">
+               <img 
+                 src={activeProject.imageUrl} 
+                 alt={activeProject.title}
+                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+               />
+               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+               <div className="absolute top-6 right-6">
+                  <div className="px-3 py-1 rounded-full bg-black/50 border border-white/20 backdrop-blur-md flex items-center gap-2">
+                     <Monitor size={12} className="text-white/60" />
+                     <span className="text-[10px] font-mono text-white/60 uppercase">Preview Active</span>
+                  </div>
+               </div>
+            </div>
+
+            {/* Project Details */}
+            <div className="p-8 md:p-10 flex-1 flex flex-col gap-8">
+              <div className="space-y-4">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                  <div className="space-y-1">
+                    <h3 className="text-4xl md:text-5xl font-black tracking-tighter text-white">
+                      {activeProject.title}
+                    </h3>
+                    <p className="text-[hsl(var(--hero-accent))] font-mono text-xs uppercase tracking-[0.4em]">
+                      {activeProject.subtitle}
+                    </p>
+                  </div>
+                  
+                  <div className="flex gap-3">
+                    {activeProject.videoUrl && (
+                      <a href={activeProject.videoUrl} className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-white/90 transition-all">
+                        <Play size={14} fill="currentColor" /> See Video
+                      </a>
+                    )}
+                    {activeProject.sourceCodeUrl && (
+                      <a href={activeProject.sourceCodeUrl} className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-all">
+                        <Github size={14} /> Source Code
+                      </a>
                     )}
                   </div>
                 </div>
+
+                <p className="text-white/60 text-lg leading-relaxed font-light max-w-3xl">
+                  {activeProject.description}
+                </p>
               </div>
-              <div
-                className={`${
-                  index % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""
-                }`}
-              >
-                <div className="relative group">
-                  <div className="relative glass-card overflow-hidden rounded-2xl">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      width={600}
-                      height={400}
-                      className="w-full"
-                    />
-                  </div>
+
+              <div className="space-y-4 mt-auto">
+                <div className="flex items-center gap-3">
+                   <div className="h-px w-8 bg-white/10" />
+                   <span className="text-[10px] uppercase tracking-[0.3em] font-black text-white/30">Technology Stack</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {activeProject.techStack.map(tech => (
+                    <TechBadge key={tech} name={tech} />
+                  ))}
                 </div>
               </div>
             </div>
-          ))}
+          </div>
         </div>
-
-        <div className="mt-24 text-center">
-          <Button
-            variant="cta"
-            size="lg"
-            className="rounded-full px-10 py-7 text-lg font-semibold"
-            asChild
-          >
-            <a
-              href="https://github.com/rahulSailesh-shah"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <ExternalLink className="mr-2 h-5 w-5" />
-              View More Projects
-            </a>
-          </Button>
+      </div>
+      
+      {/* Footer Info */}
+      <div className="flex justify-center pt-8">
+        <div className="flex items-center gap-6 px-8 py-4 rounded-full bg-white/[0.02] border border-white/5">
+          <button className="flex items-center gap-2 text-[10px] font-mono text-[hsl(var(--hero-glow))] hover:text-white transition-colors uppercase tracking-widest group">
+            View GitHub Archive <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </button>
         </div>
       </div>
     </section>
   );
 };
+

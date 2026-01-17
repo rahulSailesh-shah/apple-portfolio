@@ -44,7 +44,7 @@ export const Experience: React.FC = () => {
       <div className="flex flex-col gap-4 max-w-3xl">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 w-fit">
           <Briefcase size={12} className="text-[hsl(var(--hero-glow))]" />
-          <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/50">Professional Trajectory</span>
+          <span className="text-[10px] uppercase tracking-[0.1em] font-bold text-white/50 code-text">Professional Trajectory</span>
         </div>
         <h2 className="text-4xl md:text-6xl font-bold tracking-tighter">
           The Journey.

@@ -8,15 +8,8 @@ export const Logo: React.FC<LogoProps> = ({ className = "" }) => {
   return (
     <div className={`flex items-center space-x-3 ${className}`}>
       <div className="relative">
-        <div className="w-8 h-8 bg-gradient-to-br from-blue-900 to-blue-600 rounded-lg flex items-center justify-center shadow-lg">
-          <span className="text-white font-bold text-sm">RS</span>
-        </div>
-        <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-black"></div>
-      </div>
-      <div className="hidden sm:block">
-        <div className="font-semibold text-lg tracking-tight">Rahul Shah</div>
-        <div className="text-xs text-gray-500 dark:text-gray-400 -mt-1">
-          Full Stack Developer
+        <div className="w-8 h-8 bg-gradient-to-br rounded-lg flex items-center justify-center shadow-lg border-2 border-white/50">
+          <span className="text-white font-bold text-sm tracking-[0.1em] code-text">RS</span>
         </div>
       </div>
     </div>

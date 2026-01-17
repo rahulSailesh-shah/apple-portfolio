@@ -10,6 +10,8 @@ import {
   Globe,
   Zap,
   User,
+  Mountain,
+  Volleyball
 } from "lucide-react";
 
 export interface TechStackItem {
@@ -60,7 +62,7 @@ const AboutSection: React.FC = () => {
       <div className="flex flex-col gap-4 max-w-3xl">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 w-fit">
           <User size={12} className="text-[hsl(var(--hero-glow))]" />
-          <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/50">About Me</span>
+          <span className="text-[10px] uppercase tracking-[0.1em] font-bold text-white/50 code-text">About Me</span>
         </div>
         <h2 className="text-4xl md:text-6xl font-bold tracking-tighter">
           The Story.
@@ -77,7 +79,7 @@ const AboutSection: React.FC = () => {
           <div className="glass-card p-0 overflow-hidden h-full flex flex-col relative group">
             <div className="aspect-[4/5] overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop"
+                src="/profile.jpeg"
                 alt="Identity"
                 className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
               />
@@ -127,10 +129,10 @@ const AboutSection: React.FC = () => {
                   <Monitor size={16} className="text-[hsl(var(--hero-glow))]" />
                 </div>
                 <div>
-                  <p className="text-xs text-white/30 uppercase tracking-tighter">
+                  <p className="text-xs text-white/30 uppercase tracking-[0.1em]">
                     Availability
                   </p>
-                  <p className="text-sm font-medium">Q3 2024</p>
+                  <p className="text-sm font-medium code-text">Seeking opportunities</p>
                 </div>
               </div>
               <div className="flex items-center gap-4 group/item">
@@ -138,10 +140,10 @@ const AboutSection: React.FC = () => {
                   <Globe size={16} className="text-[hsl(var(--hero-accent))]" />
                 </div>
                 <div>
-                  <p className="text-xs text-white/30 uppercase tracking-tighter">
+                  <p className="text-xs text-white/30 uppercase tracking-[0.1em]">
                     Location
                   </p>
-                  <p className="text-sm font-medium">Remote / GMT+8</p>
+                  <p className="text-sm font-medium code-text">Remote / EST-PST</p>
                 </div>
               </div>
               <div className="flex items-center gap-4 group/item">
@@ -149,10 +151,10 @@ const AboutSection: React.FC = () => {
                   <Zap size={16} className="text-white" />
                 </div>
                 <div>
-                  <p className="text-xs text-white/30 uppercase tracking-tighter">
+                  <p className="text-xs text-white/30 uppercase tracking-[0.1em]">
                     Response
                   </p>
-                  <p className="text-sm font-medium">&lt; 4 Hours</p>
+                  <p className="text-sm font-medium code-text">&lt; 4 Hours</p>
                 </div>
               </div>
             </div>
@@ -241,26 +243,20 @@ const AboutSection: React.FC = () => {
               tennis, and the meticulous craft of manual coffee extraction.
             </p>
             <div className="grid grid-cols-3 gap-2 mt-auto">
-              <div className="aspect-square rounded-lg bg-white/[0.01] group-hover:bg-white/[0.02] overflow-hidden transition-colors">
-                <img
-                  src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop"
-                  className="w-full h-full object-cover"
-                  alt="Coffee"
-                />
+              <div className="aspect-square rounded-lg bg-white/[0.01] group-hover:bg-white/[0.02] border border-white/5 flex flex-col items-center justify-center gap-2 transition-all hover:border-white/10">
+                <div className="text-[8px] font-mono text-white/30 uppercase tracking-widest">Channel 01</div>
+                <Mountain size={24} className="text-white/70" />
+                <div className="text-[10px] font-medium text-white/60">Hiking</div>
               </div>
-              <div className="aspect-square rounded-lg bg-white/[0.01] group-hover:bg-white/[0.02] overflow-hidden transition-colors">
-                <img
-                  src="https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070&auto=format&fit=crop"
-                  className="w-full h-full object-cover"
-                  alt="Hiking"
-                />
+              <div className="aspect-square rounded-lg bg-white/[0.01] group-hover:bg-white/[0.02] border border-white/5 flex flex-col items-center justify-center gap-2 transition-all hover:border-white/10">
+                <div className="text-[8px] font-mono text-white/30 uppercase tracking-widest">Channel 02</div>
+                <Volleyball size={24} className="text-white/70" />
+                <div className="text-[10px] font-medium text-white/60">Table Tennis</div>
               </div>
-              <div className="aspect-square rounded-lg bg-white/[0.01] group-hover:bg-white/[0.02] overflow-hidden transition-colors">
-                <img
-                  src="https://images.unsplash.com/photo-1540555700478-4be289fbecee?q=80&w=2070&auto=format&fit=crop"
-                  className="w-full h-full object-cover"
-                  alt="Tennis"
-                />
+              <div className="aspect-square rounded-lg bg-white/[0.01] group-hover:bg-white/[0.02] border border-white/5 flex flex-col items-center justify-center gap-2 transition-all hover:border-white/10">
+                <div className="text-[8px] font-mono text-white/30 uppercase tracking-widest">Channel 03</div>
+                <Coffee size={24} className="text-white/70" />
+                <div className="text-[10px] font-medium text-white/60">Coffee Brewing</div>
               </div>
             </div>
           </div>

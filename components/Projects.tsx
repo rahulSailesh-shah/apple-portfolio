@@ -106,7 +106,7 @@ export const Projects: React.FC = () => {
       <div className="flex flex-col gap-4 max-w-3xl">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 w-fit">
           <Layers size={12} className="text-[hsl(var(--hero-glow))]" />
-          <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/50">Portfolio</span>
+          <span className="text-[10px] uppercase tracking-[0.1em] font-bold text-white/50 code-text">Portfolio</span>
         </div>
         <h2 className="text-4xl md:text-6xl font-bold tracking-tighter">
           The Creations.
@@ -209,12 +209,12 @@ export const Projects: React.FC = () => {
                   
                   <div className="flex gap-3">
                     {activeProject.videoUrl && (
-                      <a href={activeProject.videoUrl} className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-white/90 transition-all">
+                      <a href={activeProject.videoUrl} className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-bold text-xs uppercase hover:bg-white/90 transition-all code-text tracking-[0.1em]">
                         <Play size={14} fill="currentColor" /> See Video
                       </a>
                     )}
                     {activeProject.sourceCodeUrl && (
-                      <a href={activeProject.sourceCodeUrl} className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-all">
+                      <a href={activeProject.sourceCodeUrl} className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-xs uppercase hover:bg-white/10 transition-all code-text tracking-[0.1em]">
                         <Github size={14} /> Source Code
                       </a>
                     )}

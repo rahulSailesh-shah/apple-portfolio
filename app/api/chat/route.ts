@@ -1,15 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GoogleGenAI } from "@google/genai";
+import OpenAI from "openai";
 import { SYSTEM_PROMPT } from "@/constants";
 
-// Initialize the Gemini Client on the server side
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY || "",
+// Initialize the NVIDIA API Client (OpenAI compatible)
+const openai = new OpenAI({
+  apiKey: process.env.NVIDIA_API_KEY || "",
+  baseURL: "https://integrate.api.nvidia.com/v1",
 });
 
 // Store chat sessions with timestamp
 interface SessionData {
-  chatSession: any;
+  messages: Array<{ role: "system" | "user" | "assistant"; content: string }>;
   lastAccessed: number;
 }
 
@@ -59,7 +60,7 @@ export async function POST(request: NextRequest) {
     const { message, sessionId, action } = await request.json();
 
     // Validate API key
-    if (!process.env.GEMINI_API_KEY) {
+    if (!process.env.NVIDIA_API_KEY) {
       return NextResponse.json(
         { error: "API key not configured" },
         { status: 500 }
@@ -87,15 +88,10 @@ export async function POST(request: NextRequest) {
       // Enforce session limit before creating new session
       enforceSessionLimit();
 
-      const chatSession = ai.chats.create({
-        model: "gemini-2.5-flash",
-        config: {
-          systemInstruction: SYSTEM_PROMPT,
-        },
-      });
-
       sessionData = {
-        chatSession,
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT },
+        ],
         lastAccessed: Date.now(),
       };
 
@@ -105,21 +101,37 @@ export async function POST(request: NextRequest) {
       sessionData.lastAccessed = Date.now();
     }
 
+    // Add user message to conversation history
+    sessionData.messages.push({ role: "user", content: message });
+
     // Send message and stream response
-    const streamResult = await sessionData.chatSession.sendMessageStream({
-      message,
+    const streamResult = await openai.chat.completions.create({
+      model: "openai/gpt-oss-120b",
+      messages: sessionData.messages,
+      temperature: 1,
+      top_p: 1,
+      max_tokens: 4096,
+      stream: true,
     });
 
     // Create a readable stream for the response
     const encoder = new TextEncoder();
+    let assistantMessage = "";
+
     const stream = new ReadableStream({
       async start(controller) {
         try {
           for await (const chunk of streamResult) {
-            if (chunk.text) {
-              const data = JSON.stringify({ text: chunk.text }) + "\n";
+            const content = chunk.choices[0]?.delta?.content || "";
+            if (content) {
+              assistantMessage += content;
+              const data = JSON.stringify({ text: content }) + "\n";
               controller.enqueue(encoder.encode(data));
             }
+          }
+          // Add assistant response to conversation history
+          if (assistantMessage) {
+            sessionData.messages.push({ role: "assistant", content: assistantMessage });
           }
           controller.close();
         } catch (error) {

@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { X, Sparkles, Search, Loader2, ArrowRight, CornerDownLeft } from 'lucide-react';
-import { sendMessageStream, resetChat } from '@/services/geminiService';
+import { sendMessageStream, resetChat } from '@/services/chatService';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
@@ -33,6 +33,24 @@ const AIChatModal: React.FC<AIChatModalProps> = ({ isOpen, onClose }) => {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [response, isLoading]);
+
+  // Handle ESC key to close modal
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        e.stopPropagation();
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape, true);
+    return () => {
+      document.removeEventListener('keydown', handleEscape, true);
+    };
+  }, [isOpen, onClose]);
 
   const handleSearch = async (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -80,6 +98,13 @@ const AIChatModal: React.FC<AIChatModalProps> = ({ isOpen, onClose }) => {
               ref={inputRef}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Escape') {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  onClose();
+                }
+              }}
               placeholder="Ask anything about my experience or stack..."
               className="w-full bg-transparent code-text border-none outline-none text-xl text-white placeholder:text-white/10 font-light"
             />

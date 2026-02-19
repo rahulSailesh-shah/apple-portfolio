@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
 import TechBadge from "./ui/TechBadge";
+import VideoModal from "./ui/VideoModal";
 import {
   Play,
   Github,
@@ -10,13 +11,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 
-const CATEGORIES = [
-  "All",
-  "AI",
-  "Full Stack",
-  "Distributed Systems",
-  "Tools",
-] as const;
+const CATEGORIES = ["All", "AI", "Tools", "Full Stack"] as const;
 interface Project {
   id: string;
   title: string;
@@ -25,90 +20,213 @@ interface Project {
   techStack: string[];
   imageUrl: string;
   videoUrl?: string;
+  hasVideoDemo?: boolean;
   sourceCodeUrl?: string;
   category: "AI" | "Full Stack" | "Distributed Systems" | "Tools";
 }
 
 const PROJECTS_DATA: Project[] = [
+  // AI Projects
   {
     id: "vistruct",
     title: "Vistruct",
-    subtitle: "AI-Powered Education",
-    category: "Full Stack",
+    subtitle: "AI-Powered Educational Videos",
+    category: "AI",
     description:
       "AI-powered educational video platform that lets educators create professional videos with chat-based script editing, AI voice-over, and Manim animations.",
     techStack: [
+      "Python",
       "React",
       "TypeScript",
       "FastAPI",
       "PostgreSQL",
       "Docker",
       "Manim",
-      "AI Voice Synthesis",
+      "GenAI",
     ],
     imageUrl:
-      "https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=2070&auto=format&fit=crop",
-    videoUrl: "#",
-    sourceCodeUrl: "#",
+      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/vistruct.png",
+    videoUrl:
+      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/videos/Integration_Demo.mov",
+    hasVideoDemo: true,
+    sourceCodeUrl: "https://github.com/rahulSailesh-shah/Vistruct",
   },
   {
     id: "conversense",
     title: "Conversense",
-    subtitle: "Real-time AI Agents",
+    subtitle: "Realtime AI Video Q&A with Coach Guides",
     category: "AI",
     description:
-      "Platform to build AI agents for real-time video call Q&A, meeting summarization, and post-meeting chat-based interaction.",
+      "Platform to create AI agents for real-time video call Q&A with in-call emotion analysis, live meeting summaries, and post-meeting chat-based follow-up.",
     techStack: [
       "Golang",
-      "Gin",
+      "React",
+      "TypeScript",
       "PostgreSQL",
       "Livekit",
       "Gemini Live API",
-      "Docker",
+      "GenAI",
     ],
     imageUrl:
-      "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=2106&auto=format&fit=crop",
-    videoUrl: "#",
-    sourceCodeUrl: "#",
+      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/conversense.png",
+    videoUrl:
+      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/videos/Integration_Demo.mov",
+    hasVideoDemo: true,
+    sourceCodeUrl: "https://github.com/rahulSailesh-shah/conversense",
   },
   {
-    id: "nexus-cloud",
-    title: "Nexus Cloud",
-    subtitle: "Infrastructure Orchestrator",
-    category: "Distributed Systems",
-    description:
-      "A cloud-native infrastructure management tool for automated deployment of microservices across hybrid cloud environments.",
-    techStack: ["Python", "Kubernetes", "AWS CDK", "Terraform", "Prometheus"],
-    imageUrl:
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=2070&auto=format&fit=crop",
-    videoUrl: "#",
-    sourceCodeUrl: "#",
-  },
-  {
-    id: "sentinel-ai",
-    title: "Sentinel AI",
-    subtitle: "Security Monitor",
+    id: "create-ai",
+    title: "CreateAI",
+    subtitle: "AI Infra for Chatbots on Custom Knowledge",
     category: "AI",
     description:
-      "Real-time security auditing tool using LLMs to detect vulnerabilities in smart contracts and cloud configurations.",
-    techStack: ["TypeScript", "LangChain", "FastAPI", "Redis", "OpenAI"],
+      "CreateAI is a platform that enables anyone to build and deploy AI agents and chatbots on private knowledge bases with support for 40+ models, with built-in guardrails for privacy and ethical AI use. It emphasizes safe sharing, compliance, and extensibility for secure, transparent AI assistants.",
+    techStack: [
+      "Python",
+      "React",
+      "AWS Bedrock",
+      "AWS Lambda",
+      "AWS S3",
+      "AWS DynamoDB",
+      "LangChain",
+      "OpenAI",
+      "Anthropic",
+      "Gemini",
+    ],
     imageUrl:
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
-    videoUrl: "#",
-    sourceCodeUrl: "#",
+      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/createAI.png",
+    videoUrl: "https://ai.asu.edu/technical-foundation/createai-builder",
+    hasVideoDemo: false,
+    sourceCodeUrl: "",
   },
   {
-    id: "flux-db",
-    title: "FluxDB",
-    subtitle: "High-Performance Store",
-    category: "Distributed Systems",
+    id: "VoicePad",
+    title: "VoicePad",
+    subtitle: "Voice to Whiteboard",
+    category: "AI",
     description:
-      "A custom distributed key-value store optimized for high-throughput IoT data ingestion.",
-    techStack: ["Go", "gRPC", "Raft Consensus", "RocksDB", "Docker"],
+      "VoicePad is a real-time app that lets you talk directly to an AI language model and control a shared whiteboard by giving spoken instructions. Collaborate by describing what you want drawn, and see the AI turn your words into visual ideas instantly.",
+    techStack: [
+      "Golang",
+      "Python",
+      "React",
+      "TypeScript",
+      "Gemini Live API",
+      "gRPC",
+      "Whisper",
+      "Livekit",
+    ],
     imageUrl:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
-    videoUrl: "#",
-    sourceCodeUrl: "#",
+      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/voicepad.png",
+    videoUrl: "https://voicepad.com",
+    hasVideoDemo: true,
+    sourceCodeUrl: "https://github.com/rahulSailesh-shah/VoicePad",
+  },
+  {
+    id: "Ch8n",
+    title: "Ch8n",
+    subtitle: "Create n8n style workflows with AI",
+    category: "AI",
+    description:
+      "Ch8n is a platform that lets you create n8n style workflows with AI. It allows you to create workflows that can be used to automate tasks and processes.",
+    techStack: [
+      "Go",
+      "React",
+      "TypeScript",
+      "Better Auth",
+      "PostgreSQL",
+      "Docker",
+      "GenAI",
+    ],
+    imageUrl:
+      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/vistruct.png",
+    videoUrl:
+      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/videos/Integration_Demo.mov",
+    hasVideoDemo: true,
+    sourceCodeUrl: "https://github.com/rahulSailesh-shah/ch8n_go",
+  },
+
+  // Tools
+  {
+    id: "Shell",
+    title: "Shell",
+    subtitle: "POSIX-compliant shell in Go",
+    category: "Tools",
+    description:
+      "A simple POSIX-compliant shell implementation in Go. Supports built-in commands (exit, echo, type, pwd, cd), executes external programs, handles single and double quotes, and supports ~ in cd",
+    techStack: ["Go"],
+    imageUrl:
+      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/shell.webp",
+    hasVideoDemo: false,
+    sourceCodeUrl: "https://github.com/rahulSailesh-shah/go-shell",
+  },
+  {
+    id: "Redis",
+    title: "Redis",
+    subtitle: "Minimalist Redis-compatible Server in Go",
+    category: "Tools",
+    description:
+      "A minimalist, in-memory Redis-compatible server written in Go. It implements the RESP protocol and supports basic commands like PING, SET/GET, and hash operations (HSET, HGET, HGETALL).\n\nFeatures:\n- RESP protocol parsing and serialization\n- Thread-safe key-value store (SET / GET)\n- Thread-safe hash map store (HSET / HGET / HGETALL)",
+    techStack: ["Go", "TCP Networking"],
+    imageUrl:
+      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/redis.webp",
+    hasVideoDemo: false,
+    sourceCodeUrl: "https://github.com/rahulSailesh-shah/redis",
+  },
+  {
+    id: "Loadbalancer",
+    title: "Load Balancer",
+    subtitle: "Round-Robin HTTP Load Balancer in Go",
+    category: "Tools",
+    description:
+      "A simple round-robin HTTP load balancer written in Go. Incoming requests are proxied to a pool of backend servers, health-checked periodically, and automatically removed from rotation when unreachable. Reverse proxy using net/http/httputil",
+    techStack: ["Go", "net/http", "httputil", "Viper", "YAML"],
+    imageUrl:
+      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/loadbalancer.webp",
+    hasVideoDemo: false,
+    sourceCodeUrl: "https://github.com/rahulSailesh-shah/go-loadbalancer",
+  },
+  {
+    id: "Logger",
+    title: "Logger",
+    subtitle: "Structured Logging Library for Go",
+    category: "Tools",
+    description:
+      "A high-performance, structured logging library for Go that provides a context-aware abstraction over zerolog for enterprise-grade observability. It features native support for multi-destination transports like AWS CloudWatch and local files, alongside built-in trace ID propagation and custom event hooks.",
+    techStack: ["Go", "Zerolog", "AWS CloudWatch", "Local Files"],
+    imageUrl:
+      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/loadbalancer.webp",
+    hasVideoDemo: false,
+    sourceCodeUrl: "https://github.com/rahulSailesh-shah/go-logger",
+  },
+
+  // Full Stack Projects
+  {
+    id: "FigPro",
+    title: "FigPro",
+    subtitle: "A whiteboard tool alternative to Figma",
+    category: "Full Stack",
+    description:
+      "A real-time live collaboration tool and alternative to Figma.",
+    techStack: ["Next.js", "Liveblocks", "Fabric.js", "Tailwind CSS"],
+    imageUrl:
+      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/figma.webp",
+    videoUrl: "https://figma-clone-coral.vercel.app/",
+    hasVideoDemo: false,
+    sourceCodeUrl: "https://github.com/rahulSailesh-shah/Figma-Clone",
+  },
+  {
+    id: "Route Tracker",
+    title: "Route Tracker",
+    subtitle: "Mobile Route Tracking App",
+    category: "Full Stack",
+    description:
+      "Mobile app tracks routes using GPS capabilities. Stores recorded routes in MongoDB for review. User authentication and data privacy included.",
+    techStack: ["React Native", "Node.js", "MongoDB", "Express"],
+    imageUrl:
+      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/route.webp",
+    hasVideoDemo: false,
+    sourceCodeUrl: "https://github.com/rahulSailesh-shah/Route-Tracker",
   },
 ];
 
@@ -118,6 +236,9 @@ export const Projects: React.FC = () => {
   const [selectedProjectId, setSelectedProjectId] = useState(
     PROJECTS_DATA[0].id,
   );
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [currentVideoUrl, setCurrentVideoUrl] = useState<string>("");
+  const [currentVideoTitle, setCurrentVideoTitle] = useState<string>("");
 
   const filteredProjects = useMemo(() => {
     return activeCategory === "All"
@@ -247,25 +368,39 @@ export const Projects: React.FC = () => {
               <div className="space-y-4">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
                   <div className="space-y-1">
-                    <h3 className="text-4xl md:text-5xl font-black tracking-tighter text-white">
+                    <h3 className="text-4xl md:text-5xl font-black text-white">
                       {activeProject.title}
                     </h3>
-                    <p className="text-[hsl(var(--hero-accent))] font-mono text-xs uppercase tracking-[0.4em]">
+                    <p className="text-[hsl(var(--hero-accent))] font-mono text-xs uppercase tracking-[0.2em]">
                       {activeProject.subtitle}
                     </p>
                   </div>
 
                   <div className="flex gap-3">
                     {activeProject.videoUrl && (
-                      <a
-                        href={activeProject.videoUrl}
+                      <button
+                        onClick={() => {
+                          if (activeProject.hasVideoDemo) {
+                            setCurrentVideoUrl(activeProject.videoUrl!);
+                            setCurrentVideoTitle(activeProject.title);
+                            setIsVideoModalOpen(true);
+                          } else {
+                            window.open(
+                              activeProject.videoUrl,
+                              "_blank",
+                              "noopener,noreferrer",
+                            );
+                          }
+                        }}
                         className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-bold text-xs uppercase hover:bg-white/90 transition-all code-text tracking-[0.1em]"
                       >
-                        <Play size={14} fill="currentColor" /> See Video
-                      </a>
+                        <Play size={14} fill="currentColor" /> See Demo
+                      </button>
                     )}
                     {activeProject.sourceCodeUrl && (
                       <a
+                        target="_blank"
+                        rel="noopener noreferrer"
                         href={activeProject.sourceCodeUrl}
                         className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-xs uppercase hover:bg-white/10 transition-all code-text tracking-[0.1em]"
                       >
@@ -301,15 +436,28 @@ export const Projects: React.FC = () => {
       {/* Footer Info */}
       <div className="flex justify-center pt-8">
         <div className="flex items-center gap-6 px-8 py-4 rounded-full bg-white/[0.02] border border-white/5">
-          <button className="flex items-center gap-2 text-[10px] font-mono text-[hsl(var(--hero-glow))] hover:text-white transition-colors uppercase tracking-widest group">
+          <a
+            href="https://github.com/rahulSailesh-shah?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-[10px] font-mono text-[hsl(var(--hero-glow))] hover:text-white transition-colors uppercase tracking-widest group"
+          >
             View GitHub Archive{" "}
             <ArrowUpRight
               size={14}
               className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
             />
-          </button>
+          </a>
         </div>
       </div>
+
+      {/* Video Modal */}
+      <VideoModal
+        isOpen={isVideoModalOpen}
+        onClose={() => setIsVideoModalOpen(false)}
+        videoUrl={currentVideoUrl}
+        title={currentVideoTitle}
+      />
     </section>
   );
 };

@@ -1,259 +1,277 @@
 export const PROJECTS = [
   {
+    name: "Vistruct",
+    description:
+      "AI-powered educational video platform that lets educators create professional videos with chat-based script editing, AI voice-over, and Manim animations.",
+    fullDescription: `Vistruct is an AI-powered educational video creation platform that automates the entire video production workflow. The platform enables educators to transform their ideas into professional educational videos through a conversational interface.
+
+Key Features:
+- Real-time chat-based script development where educators can iteratively refine video scripts through natural conversation
+- AI voice-over synthesis that converts scripts into natural-sounding narration
+- Seamless integration with Manim (Mathematical Animation Engine) for creating professional mathematical and scientific animations
+- Automated content generation pipeline that handles script-to-video transformation
+- Full-stack architecture with React/TypeScript frontend and FastAPI backend
+- PostgreSQL database for storing user data, projects, and video metadata
+- Dockerized deployment for consistent development and production environments
+
+The platform significantly reduces the time and technical expertise required to create high-quality educational videos, democratizing video content creation for educators.`,
+    tech: [
+      "Python",
+      "React",
+      "TypeScript",
+      "FastAPI",
+      "PostgreSQL",
+      "Docker",
+      "Manim",
+      "GenAI",
+    ],
+    github: "https://github.com/rahulSailesh-shah/Vistruct",
+    demo: "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/videos/Integration_Demo.mov",
+    period: "Not specified",
+    impact: [
+      "Enables educators to create professional educational videos without video editing expertise",
+      "Reduces video production time from hours to minutes",
+      "Makes mathematical and scientific animations accessible through Manim integration",
+      "Democratizes video content creation for non-technical educators",
+    ],
+    technicalHighlights: [
+      "Built real-time chat-based script editing system",
+      "Integrated AI models for script generation and voice synthesis",
+      "Designed asynchronous video rendering pipeline",
+      "Implemented user authentication and project management",
+      "Created responsive UI with TypeScript for type-safe development",
+    ],
+  },
+  {
     name: "Conversense",
     description:
-      "A platform to build AI agents that users can interact with in real-time via video calls, enabling dynamic Q&A on specific topics, and automatic post-meeting summarization.",
-    fullDescription: `Conversense is a real-time AI collaboration platform that allows users to interact with intelligent agents over video calls. It supports question-answering and topic-specific discussions during the meeting. After the session, a background pipeline processes the meeting by fetching transcripts, recordings, and generating summaries for review. Additionally, a chat interface allows users to query the agent asynchronously about what happened during the meeting.
+      "Platform to create AI agents for real-time video call Q&A with in-call emotion analysis, live meeting summaries, and post-meeting chat-based follow-up.",
+    fullDescription: `Conversense is a real-time AI collaboration platform that allows users to interact with intelligent agents over video calls. It supports question-answering and topic-specific discussions during the meeting with in-call emotion analysis. After the session, a background pipeline processes the meeting by fetching transcripts, recordings, and generating summaries for review. Additionally, a chat interface allows users to query the agent asynchronously about what happened during the meeting.
 
 Key Features:
 - Real-time AI agent interaction via video calls for topic-specific Q&A
+- In-call emotion analysis for enhanced interaction understanding
 - Automatic meeting transcript and recording retrieval after sessions
+- Live meeting summaries during the call
 - Summarization engine that condenses the meeting discussion into actionable insights
 - Persistent chat interface to ask follow-up questions post-meeting
 - Background job processing for transcript, recording, and summary generation
 - Modular architecture to integrate multiple AI models for conversation, summarization, and retrieval
 - Supports multiple simultaneous meetings and agents with stateful memory`,
     tech: [
-      "Python",
-      "TypeScript / React",
-      "WebRTC or video streaming tech",
-      "FastAPI / Node.js backend",
-      "PostgreSQL or other database",
-      "Celery / Background Job Queue",
-      "Generative AI / LLMs",
-      "Summarization AI models",
+      "Golang",
+      "React",
+      "TypeScript",
+      "PostgreSQL",
+      "Livekit",
+      "Gemini Live API",
+      "GenAI",
     ],
     github: "https://github.com/rahulSailesh-shah/conversense",
-    demo: null,
+    demo: "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/videos/Integration_Demo.mov",
     period: "Not specified",
     impact: [
       "Enables interactive learning or discussion through AI agents",
       "Automates meeting documentation, reducing manual note-taking",
       "Allows users to query past meetings via chat interface",
       "Supports knowledge retention and accessibility for team discussions",
+      "Provides real-time emotion analysis for better interaction understanding",
     ],
     technicalHighlights: [
-      "Implemented real-time video call integration with AI agent interaction",
+      "Implemented real-time video call integration with AI agent interaction using Livekit",
       "Designed asynchronous background processing for transcripts, recordings, and summarization",
       "Built chat interface to allow post-meeting queries on meeting content",
-      "Integrated multiple AI models for conversation, context retention, and summarization",
+      "Integrated Gemini Live API for real-time AI interactions",
       "Ensured stateful memory for agents across meetings",
+      "Implemented emotion analysis during video calls",
     ],
   },
   {
-    name: "Vistruct",
+    name: "CreateAI",
     description:
-      "A full-stack educational video platform that revolutionizes how educational content is created and delivered. Currently used by 20+ professors from my undergraduate university for creating engaging educational videos.",
-    fullDescription: `Vistruct is an AI-powered educational video creation platform that automates the entire video production workflow. The platform enables educators to transform their ideas into professional educational videos through a conversational interface.
-    Key Features:
-    - Real-time chat-based script development where educators can iteratively refine video scripts through natural conversation
-    - AI voice-over synthesis that converts scripts into natural-sounding narration
-    - Seamless integration with Manim (Mathematical Animation Engine) for creating professional mathematical and scientific animations
-    - Automated content generation pipeline that handles script-to-video transformation
-    - Full-stack architecture with React/TypeScript frontend and FastAPI backend
-    - PostgreSQL database for storing user data, projects, and video metadata
-    - Dockerized deployment for consistent development and production environments
+      "CreateAI is a platform that enables anyone to build and deploy AI agents and chatbots on private knowledge bases with support for 40+ models, with built-in guardrails for privacy and ethical AI use.",
+    fullDescription: `CreateAI is a platform that enables anyone to build and deploy AI agents and chatbots on private knowledge bases with support for 40+ models. It emphasizes safe sharing, compliance, and extensibility for secure, transparent AI assistants.
 
-    The platform significantly reduces the time and technical expertise required to create high-quality educational videos, democratizing video content creation for educators.`,
+Key Features:
+- Model-agnostic platform supporting 40+ AI models (OpenAI, Anthropic, Gemini, AWS Bedrock)
+- Private knowledge base integration for custom AI assistants
+- Built-in guardrails for privacy and ethical AI use
+- No-code/low-code interface for building AI agents
+- Secure sharing and compliance features
+- Extensible architecture for custom integrations
+- Enterprise-grade security and scalability
+
+The platform democratizes AI development by allowing non-technical users to build sophisticated AI assistants while maintaining security and ethical standards.`,
     tech: [
+      "Python",
+      "React",
+      "AWS Bedrock",
+      "AWS Lambda",
+      "AWS S3",
+      "AWS DynamoDB",
+      "LangChain",
+      "OpenAI",
+      "Anthropic",
+      "Gemini",
+    ],
+    github: "",
+    demo: "https://ai.asu.edu/technical-foundation/createai-builder",
+    period: "Ongoing",
+    impact: [
+      "Enables non-technical users to build AI assistants and chatbots",
+      "Supports 40+ AI models for flexibility and vendor independence",
+      "Provides built-in privacy and ethical AI guardrails",
+      "Facilitates secure sharing and collaboration on AI agents",
+      "Democratizes AI development for educational and enterprise use",
+    ],
+    technicalHighlights: [
+      "Model-agnostic architecture supporting multiple AI providers",
+      "Built knowledge base integration with vector databases",
+      "Implemented privacy and ethical AI evaluation frameworks",
+      "Created no-code builder interface for non-technical users",
+      "Designed serverless architecture using AWS Lambda and DynamoDB",
+      "Integrated LangChain for orchestration and tool use",
+    ],
+  },
+  {
+    name: "VoicePad",
+    description:
+      "VoicePad is a real-time app that lets you talk directly to an AI language model and control a shared whiteboard by giving spoken instructions. Collaborate by describing what you want drawn, and see the AI turn your words into visual ideas instantly.",
+    fullDescription: `VoicePad is a real-time collaborative application that combines voice interaction with AI and visual whiteboard capabilities. Users can speak directly to an AI language model and control a shared whiteboard through spoken instructions, enabling instant visual representation of ideas.
+
+Key Features:
+- Real-time voice-to-AI interaction using Gemini Live API
+- Shared whiteboard control through voice commands
+- Collaborative editing with multiple users
+- Instant visual generation from spoken descriptions
+- Speech-to-text processing using Whisper
+- Real-time synchronization across all connected clients
+- gRPC-based communication for low-latency interactions
+
+The platform enables natural, hands-free collaboration where users can describe visual concepts and see them appear on a shared canvas in real-time.`,
+    tech: [
+      "Golang",
+      "Python",
       "React",
       "TypeScript",
-      "FastAPI",
+      "Gemini Live API",
+      "gRPC",
+      "Whisper",
+      "Livekit",
+    ],
+    github: "https://github.com/rahulSailesh-shah/VoicePad",
+    demo: "https://voicepad.com",
+    period: "Not specified",
+    impact: [
+      "Enables hands-free visual collaboration through voice commands",
+      "Makes AI-powered visual generation accessible via natural speech",
+      "Facilitates real-time collaborative whiteboard sessions",
+      "Reduces barriers to visual ideation and brainstorming",
+    ],
+    technicalHighlights: [
+      "Integrated Gemini Live API for real-time voice-to-AI interaction",
+      "Built real-time whiteboard synchronization using Livekit",
+      "Implemented speech-to-text processing with Whisper",
+      "Designed gRPC-based communication for low-latency interactions",
+      "Created collaborative editing system with conflict resolution",
+      "Built responsive UI for voice and visual interaction",
+    ],
+  },
+  {
+    name: "Ch8n",
+    description:
+      "Ch8n is a platform that lets you create n8n style workflows with AI. It allows you to create workflows that can be used to automate tasks and processes.",
+    fullDescription: `Ch8n is an AI-powered workflow automation platform inspired by n8n. It enables users to create complex automation workflows using AI assistance, making workflow creation more intuitive and accessible.
+
+Key Features:
+- Visual workflow builder similar to n8n
+- AI-assisted workflow creation and optimization
+- Support for various integrations and connectors
+- Task automation capabilities
+- Process orchestration
+- User authentication and workflow management
+- Dockerized deployment for easy setup
+
+The platform combines the power of visual workflow builders with AI assistance to make automation more accessible and intelligent.`,
+    tech: [
+      "Go",
+      "React",
+      "TypeScript",
+      "Better Auth",
       "PostgreSQL",
       "Docker",
       "GenAI",
-      "Manim",
-      "AI Voice Synthesis",
     ],
-    github: "https://github.com/rshah107/vistruct",
-    demo: "https://vistruct-demo.com",
-    period: "Jul 2025 - Aug 2025",
+    github: "https://github.com/rahulSailesh-shah/ch8n_go",
+    demo: "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/videos/Integration_Demo.mov",
+    period: "Not specified",
     impact: [
-      "Adopted by 20+ professors for educational content creation",
-      "Reduces video production time from hours to minutes",
-      "Eliminates need for complex video editing software",
-      "Makes professional educational videos accessible to non-technical educators",
+      "Makes workflow automation more accessible through AI assistance",
+      "Enables visual workflow creation without extensive technical knowledge",
+      "Facilitates task and process automation",
+      "Provides intuitive interface for complex automation scenarios",
     ],
     technicalHighlights: [
-      "Built real-time WebSocket-based chat system for interactive script editing",
-      "Integrated multiple AI models for script generation and voice synthesis",
-      "Designed asynchronous video rendering pipeline using task queues",
-      "Implemented user authentication and project management system",
-      "Created responsive UI with TypeScript for type-safe development",
+      "Built visual workflow builder with drag-and-drop interface",
+      "Integrated AI for workflow creation assistance",
+      "Implemented Better Auth for secure user authentication",
+      "Designed workflow execution engine",
+      "Created integration system for various services and APIs",
+      "Built Dockerized deployment for consistent environments",
     ],
   },
   {
-    name: "ASU Technical Foundation / CreateAI Platform",
+    name: "Shell",
     description:
-      "A secure, scalable AI infrastructure at Arizona State University designed to empower non‑technical users (faculty, students, and staff) to build and experiment with AI tools.",
-    fullDescription: `ASU's Technical Foundation provides the backbone for enterprise-scale AI innovation across the university. The vision is to make AI development accessible to a broad community, not just highly technical teams. At its core is the **CreateAI Platform**, which supports the creation, testing, and deployment of custom AI-powered tools at scale.
+      "A simple POSIX-compliant shell implementation in Go. Supports built-in commands (exit, echo, type, pwd, cd), executes external programs, handles single and double quotes, and supports ~ in cd",
+    fullDescription: `Shell is a POSIX-compliant shell implementation written in Go. It provides core shell functionality including built-in commands, external program execution, and proper handling of quotes and special characters.
 
-    Key Components:
-    - **CreateAI Platform**: A model-agnostic and cloud-flexible environment where users can build AI assistants, learning tools, chatbots, and more — without needing deep engineering experience
-    - **CreateAI Builder**: A no-code / low-code interface to turn ideas into AI experiences. Users can upload content, define goals, and shape responses using plain language rather than code.
-    - **Ethical AI Engine**: A framework to evaluate and filter AI model outputs for bias, fairness, accuracy, hallucinations, and other ethical dimensions.
-    - **Governance & Ethics Oversight**: A Faculty Ethics Committee advises on responsible AI development, establishing guardrails, and reviewing AI-enabled solutions.
-    - **Scalability & Security**: The platform is built to support enterprise usage across ASU, enabling rapid prototyping and deployment in a secure, governed environment.
+Key Features:
+- Built-in commands: exit, echo, type, pwd, cd
+- External program execution
+- Single and double quote handling
+- Tilde expansion in cd command (~)
+- POSIX-compliant behavior
+- Command parsing and execution
+- Environment variable support
 
-    Impact / Goals:
-    - Democratizes AI: Empowers faculty, staff, and students across disciplines to build AI tools without needing to be engineers.
-    - Accelerates Innovation: Facilitates rapid prototyping of AI solutions tailored to educational needs, research, and administrative challenges.
-    - Ethical AI First: Prioritizes fairness and safety through built-in evaluation mechanisms and oversight.
-    - Flexible Infrastructure: Cloud-agnostic design allows ASU to pick the best technology stack while maintaining institutional controls.`,
-    tech: [
-      "Generative AI",
-      "Cloud Infrastructure",
-      "Model‑Agnostic Architecture",
-      "Ethical AI Evaluation",
-      "Low‑Code / No‑Code Tooling",
-    ],
-    github: "Academic Project can't be shared",
-    details: "https://ai.asu.edu/technical-foundation",
-    demo: "CreateAI Builder (ASU internal platform) — described on ASU site",
-    period: "Ongoing",
+This project demonstrates low-level system programming, process management, and command-line interface design in Go.`,
+    tech: ["Go"],
+    github: "https://github.com/rahulSailesh-shah/go-shell",
+    demo: null,
+    period: "Not specified",
     impact: [
-      "Enables non-technical stakeholders to build AI assistants",
-      "Supports scalable AI experimentation across ASU",
-      "Improves access to AI-powered tools for learning, research, and operations",
-      "Establishes ethical guardrails for generative AI at an institutional scale",
+      "Educational tool for understanding shell internals",
+      "Demonstrates process management and system programming",
+      "Shows POSIX compliance implementation",
+      "Useful for learning Go system programming",
     ],
     technicalHighlights: [
-      "Model-agnostic, vendor-flexible AI infrastructure",
-      "No-code builder interface tailored for non-engineers",
-      "Ethical AI Engine to assess and filter AI output",
-      "Governance via a faculty-led ethics committee",
-      "Enterprise-grade security and scalability",
+      "Implemented command parsing and tokenization",
+      "Built process execution and management system",
+      "Handled quote parsing and expansion",
+      "Implemented built-in command execution",
+      "Created environment variable management",
+      "Designed POSIX-compliant command handling",
     ],
   },
   {
-    name: "InfoFetchBot",
+    name: "Redis",
     description:
-      "An intelligent Discord bot that automates information gathering and organization through AI-powered web searches and content processing.",
-    fullDescription: `InfoFetchBot is a sophisticated Discord automation tool that acts as a research assistant within Discord servers. The bot leverages AI agents to understand user queries, conduct web research, and deliver organized summaries directly into Notion databases.
-    Architecture:
-    - Multi-agent system using AutoGen framework for coordinated AI workflows
-    - Web scraping capabilities to extract relevant content from search results
-    - OpenAI integration for natural language understanding and summarization
-    - Notion API integration for structured data storage and organization
-    - Discord API integration for seamless bot interactions
-
-    Workflow:
-    1. User sends a query in Discord
-    2. Bot processes the message using OpenAI to understand intent
-    3. AutoGen agents trigger web searches and scrape relevant websites
-    4. Content is analyzed and summarized using AI
-    5. Structured summaries are automatically saved to Notion
-    6. User receives concise response in Discord with Notion link
-
-    This creates a seamless information pipeline from Discord conversations to organized knowledge bases.`,
-    tech: [
-      "Python",
-      "Discord API",
-      "OpenAI",
-      "AutoGen",
-      "Notion API",
-      "Web Scraping",
-      "AI Agents",
-    ],
-    github: "https://github.com/rshah107/infofetchbot",
-    period: "Sep 2024 - Oct 2024",
-    impact: [
-      "Automates research and information gathering workflow",
-      "Eliminates context switching between Discord, browser, and Notion",
-      "Enables team knowledge sharing through centralized Notion databases",
-      "Reduces time spent on manual research and note-taking",
-    ],
-    technicalHighlights: [
-      "Implemented multi-agent orchestration using AutoGen framework",
-      "Built custom web scraping logic to extract clean content from websites",
-      "Designed asynchronous message processing to handle concurrent requests",
-      "Created Notion database schema for structured information storage",
-      "Integrated OpenAI for intelligent query understanding and summarization",
-      "Handled Discord bot lifecycle management and event handling",
-    ],
-  },
-  {
-    name: "AutoDeploy",
-    description:
-      "An automated deployment platform that builds and deploys React applications directly from GitHub URLs with zero configuration required.",
-    fullDescription: `AutoDeploy is a Platform-as-a-Service (PaaS) solution that simplifies React application deployment. Users simply provide a GitHub repository URL, and the platform handles the entire build and deployment pipeline automatically.
-
-System Architecture:
-- Node.js backend orchestrating the deployment workflow
-- AWS ECS (Elastic Container Service) for containerized build servers
-- Amazon ECR (Elastic Container Registry) for Docker image storage
-- Amazon S3 for static file hosting
-- Redis for caching and job queue management
-- WebSockets for real-time build status updates
-- Reverse proxy for routing custom URLs to S3-hosted content
-
-Deployment Flow:
-1. User submits GitHub repository URL through API
-2. Backend validates repository and queues build job in Redis
-3. ECS spins up isolated build container from ECR image
-4. Container clones repository, installs dependencies, and runs build
-5. Build artifacts uploaded to S3 bucket
-6. Custom subdomain generated and mapped via reverse proxy
-7. Real-time build logs streamed to user via WebSockets
-8. User receives deployment URL upon completion
-
-The platform provides a Vercel-like experience with full control over infrastructure.`,
-    tech: [
-      "Node.js",
-      "AWS S3",
-      "AWS ECR",
-      "AWS ECS",
-      "Redis",
-      "WebSockets",
-      "Docker",
-      "Reverse Proxy",
-      "GitHub API",
-    ],
-    github: "https://github.com/rshah107/autodeploy",
-    period: "Sep 2024 - Oct 2024",
-    impact: [
-      "Enables instant React app deployment without manual configuration",
-      "Provides isolated build environments for security and consistency",
-      "Generates custom URLs for each deployment",
-      "Reduces deployment time from manual process to automated minutes",
-    ],
-    technicalHighlights: [
-      "Architected scalable build system using AWS ECS for parallel builds",
-      "Implemented Redis-based job queue for managing build requests",
-      "Built WebSocket server for real-time build log streaming",
-      "Designed reverse proxy to route custom domains to S3 static sites",
-      "Created Docker images for reproducible build environments",
-      "Implemented security measures for isolating user code execution",
-      "Built API for programmatic deployment triggers",
-      "Handled GitHub API integration for repository cloning and validation",
-    ],
-    challenges: [
-      "Managing concurrent builds across multiple ECS containers",
-      "Ensuring build isolation and security for user-provided code",
-      "Optimizing build times through caching strategies",
-      "Handling WebSocket connections at scale for real-time updates",
-    ],
-  },
-  {
-    name: "Simple Redis in Go",
-    description:
-      "A minimalist, in-memory Redis-compatible server implemented in Go, supporting basic string and hash operations over the RESP protocol.",
-    fullDescription: `Simple Redis in Go is a lightweight Redis-compatible server built from scratch using Go. It implements the Redis Serialization Protocol (RESP) to allow interaction via standard Redis clients like redis-cli or any RESP-compatible tool. The project demonstrates core principles of in-memory data stores, concurrency handling, and TCP server design.
+      "A minimalist, in-memory Redis-compatible server written in Go. It implements the RESP protocol and supports basic commands like PING, SET/GET, and hash operations (HSET, HGET, HGETALL).",
+    fullDescription: `Redis is a minimalist, in-memory Redis-compatible server implemented in Go. It implements the Redis Serialization Protocol (RESP) to allow interaction via standard Redis clients like redis-cli or any RESP-compatible tool.
 
 Key Features:
 - RESP protocol parsing and serialization for communication
-- Thread-safe in-memory key-value store (\`SET\` / \`GET\`)
-- Thread-safe hash map store (\`HSET\` / \`HGET\` / \`HGETALL\`)
-- Easy build and run using a Makefile or Go build commands
+- Thread-safe in-memory key-value store (SET / GET)
+- Thread-safe hash map store (HSET / HGET / HGETALL)
+- PING command for connection testing
+- TCP server for handling multiple client connections
 - Compatible with redis-cli, telnet, and other RESP clients
-- Demonstrates core concurrency patterns using sync.RWMutex`,
-    tech: [
-      "Go",
-      "TCP Networking",
-      "Concurrency (sync.RWMutex)",
-      "RESP Protocol",
-      "Makefile",
-    ],
+- Demonstrates core concurrency patterns using sync.RWMutex
+
+This project demonstrates core principles of in-memory data stores, concurrency handling, and TCP server design.`,
+    tech: ["Go", "TCP Networking"],
     github: "https://github.com/rahulSailesh-shah/redis",
     demo: null,
     period: "Not specified",
@@ -261,13 +279,155 @@ Key Features:
       "Serves as a learning tool for understanding Redis internals and TCP servers",
       "Demonstrates thread-safe in-memory data storage",
       "Supports educational exploration of RESP protocol and hash data structures",
+      "Shows network programming and protocol implementation",
     ],
     technicalHighlights: [
       "Implemented a TCP server to handle multiple client connections",
       "Developed RESP parser and serializer from scratch for Redis compatibility",
       "Designed thread-safe in-memory stores for strings and hashes",
-      "Built with modular Go files: main.go, server.go, resp.go, store.go",
-      "Included Makefile for easy building and running",
+      "Built concurrent request handling",
+      "Created command routing and execution system",
+      "Implemented proper error handling and protocol compliance",
+    ],
+  },
+  {
+    name: "Load Balancer",
+    description:
+      "A simple round-robin HTTP load balancer written in Go. Incoming requests are proxied to a pool of backend servers, health-checked periodically, and automatically removed from rotation when unreachable.",
+    fullDescription: `Load Balancer is a round-robin HTTP load balancer implemented in Go. It distributes incoming HTTP requests across a pool of backend servers using round-robin scheduling, with built-in health checking and automatic server removal.
+
+Key Features:
+- Round-robin request distribution across backend servers
+- Periodic health checking of backend servers
+- Automatic removal of unhealthy servers from rotation
+- Reverse proxy functionality using net/http/httputil
+- Configuration via YAML files using Viper
+- HTTP request forwarding and response handling
+- Server pool management
+
+The load balancer ensures high availability by automatically detecting and removing unhealthy servers while distributing load evenly across available backends.`,
+    tech: ["Go", "net/http", "httputil", "Viper", "YAML"],
+    github: "https://github.com/rahulSailesh-shah/go-loadbalancer",
+    demo: null,
+    period: "Not specified",
+    impact: [
+      "Demonstrates load balancing concepts and implementation",
+      "Shows reverse proxy and HTTP forwarding techniques",
+      "Provides example of health checking and failover",
+      "Useful for learning distributed systems concepts",
+    ],
+    technicalHighlights: [
+      "Implemented round-robin scheduling algorithm",
+      "Built health checking system with periodic monitoring",
+      "Created reverse proxy using net/http/httputil",
+      "Designed server pool management with automatic failover",
+      "Integrated Viper for YAML configuration",
+      "Implemented request forwarding and response handling",
+    ],
+  },
+  {
+    name: "Logger",
+    description:
+      "A high-performance, structured logging library for Go that provides a context-aware abstraction over zerolog for enterprise-grade observability. It features native support for multi-destination transports like AWS CloudWatch and local files, alongside built-in trace ID propagation and custom event hooks.",
+    fullDescription: `Logger is a high-performance, structured logging library for Go built on top of zerolog. It provides enterprise-grade observability features with context-aware logging, multi-destination transports, and built-in trace ID propagation.
+
+Key Features:
+- Context-aware logging abstraction over zerolog
+- Multi-destination transports (AWS CloudWatch, local files)
+- Built-in trace ID propagation for distributed tracing
+- Custom event hooks for extensibility
+- High-performance structured logging
+- Enterprise-grade observability features
+- Configurable log levels and formatting
+
+The library simplifies logging in distributed systems by providing a unified interface with built-in support for cloud logging services and trace correlation.`,
+    tech: ["Go", "Zerolog", "AWS CloudWatch", "Local Files"],
+    github: "https://github.com/rahulSailesh-shah/go-logger",
+    demo: null,
+    period: "Not specified",
+    impact: [
+      "Simplifies logging in Go applications",
+      "Provides enterprise-grade observability features",
+      "Enables distributed tracing through trace ID propagation",
+      "Supports multiple logging destinations for flexibility",
+    ],
+    technicalHighlights: [
+      "Built context-aware logging abstraction",
+      "Implemented multi-destination transport system",
+      "Created trace ID propagation mechanism",
+      "Designed extensible hook system for custom events",
+      "Integrated AWS CloudWatch logging",
+      "Optimized for high-performance logging",
+    ],
+  },
+  {
+    name: "FigPro",
+    description:
+      "A real-time live collaboration tool and alternative to Figma.",
+    fullDescription: `FigPro is a real-time collaborative whiteboard tool inspired by Figma. It enables multiple users to work together on a shared canvas with real-time synchronization, making it ideal for design collaboration and brainstorming sessions.
+
+Key Features:
+- Real-time collaborative editing with multiple users
+- Live synchronization across all connected clients
+- Drawing and design tools using Fabric.js
+- User presence and cursor tracking
+- Real-time updates using Liveblocks
+- Modern UI built with Next.js and Tailwind CSS
+- Responsive design for various screen sizes
+
+The platform provides a Figma-like experience with real-time collaboration capabilities, making it suitable for remote design teams and creative workflows.`,
+    tech: ["Next.js", "Liveblocks", "Fabric.js", "Tailwind CSS"],
+    github: "https://github.com/rahulSailesh-shah/Figma-Clone",
+    demo: "https://figma-clone-coral.vercel.app/",
+    period: "Not specified",
+    impact: [
+      "Enables real-time collaborative design work",
+      "Provides alternative to commercial design tools",
+      "Facilitates remote team collaboration",
+      "Demonstrates real-time synchronization techniques",
+    ],
+    technicalHighlights: [
+      "Integrated Liveblocks for real-time collaboration",
+      "Built drawing tools using Fabric.js",
+      "Implemented user presence and cursor tracking",
+      "Created real-time synchronization system",
+      "Designed responsive UI with Tailwind CSS",
+      "Built with Next.js for optimal performance",
+    ],
+  },
+  {
+    name: "Route Tracker",
+    description:
+      "Mobile app tracks routes using GPS capabilities. Stores recorded routes in MongoDB for review. User authentication and data privacy included.",
+    fullDescription: `Route Tracker is a mobile application that enables users to track and record their routes using GPS capabilities. The app stores recorded routes in MongoDB for later review and analysis, with built-in user authentication and privacy features.
+
+Key Features:
+- GPS-based route tracking
+- Route recording and storage
+- MongoDB database for route persistence
+- User authentication system
+- Data privacy and security features
+- Route review and history
+- Mobile-first design with React Native
+
+The application is useful for fitness tracking, travel logging, and location-based services, providing users with a way to record and review their movement patterns.`,
+    tech: ["React Native", "Node.js", "MongoDB", "Express"],
+    github: "https://github.com/rahulSailesh-shah/Route-Tracker",
+    demo: null,
+    period: "Not specified",
+    impact: [
+      "Enables GPS-based route tracking for mobile users",
+      "Provides route history and review capabilities",
+      "Demonstrates mobile app development with React Native",
+      "Shows integration of GPS and database storage",
+    ],
+    technicalHighlights: [
+      "Implemented GPS tracking using React Native",
+      "Built RESTful API with Express and Node.js",
+      "Designed MongoDB schema for route storage",
+      "Created user authentication system",
+      "Implemented data privacy and security measures",
+      "Built mobile-first UI with React Native",
     ],
   },
 ];

@@ -11,7 +11,7 @@ import {
   Zap,
   User,
   Mountain,
-  Volleyball
+  Volleyball,
 } from "lucide-react";
 
 export interface TechStackItem {
@@ -35,25 +35,53 @@ export const ABOUT_DATA: AboutContent = {
   paragraphs: [
     "I'm a Full Stack Developer who fell into software through an unexpected web development elective. What started as curiosity transformed into a career of building full-scale applications that redefine user experiences.",
     "My journey has bridged the gap between nimble startups and global MNCs. I've designed and deployed systems for IoT smart locks, AI-powered healthcare platforms, and enterprise SaaS for manufacturing. My focus is on architecture that scales and automation that simplifies.",
-    "Beyond the terminal, I'm an advocate for clean code and impactful solutions. I believe every line written should serve a purpose and every pixel rendered should delight."
+    "Beyond the terminal, I'm an advocate for clean code and impactful solutions. I believe every line written should serve a purpose and every pixel rendered should delight.",
   ],
   hobbies: ["Hiking", "Table Tennis", "Coffee Brewing"],
   techStack: {
     languages: [
-      "Java", "Go", "TypeScript", "Python", "Node.js", "React", "React Native", 
-      "Next.js", "GraphQL", "FastAPI", "Spring Boot", "GenAI", "LangChain"
+      "Java",
+      "Go",
+      "TypeScript",
+      "Python",
+      "Node.js",
+      "React",
+      "React Native",
+      "Next.js",
+      "GraphQL",
+      "FastAPI",
+      "Spring Boot",
+      "GenAI",
+      "LangChain",
     ],
     cloud: [
-      "AWS API Gateway", "AWS Lambda", "AWS S3", "AWS EC2", "AWS ECS", 
-      "CloudFormation", "AWS CDK", "Docker", "MySQL", "PostgreSQL", 
-      "Redis", "DynamoDB", "Kafka", "Elasticsearch", "MongoDB", "RabbitMQ"
+      "AWS API Gateway",
+      "AWS Lambda",
+      "AWS S3",
+      "AWS EC2",
+      "AWS ECS",
+      "CloudFormation",
+      "AWS CDK",
+      "Docker",
+      "MySQL",
+      "PostgreSQL",
+      "Redis",
+      "DynamoDB",
+      "Kafka",
+      "Elasticsearch",
+      "MongoDB",
+      "RabbitMQ",
     ],
     tools: [
-      "Git", "Jenkins", "Kubernetes", "Selenium", "Prometheus", "Grafana"
-    ]
-  }
+      "Git",
+      "Jenkins",
+      "Kubernetes",
+      "Selenium",
+      "Prometheus",
+      "Grafana",
+    ],
+  },
 };
-
 
 const AboutSection: React.FC = () => {
   return (
@@ -62,7 +90,9 @@ const AboutSection: React.FC = () => {
       <div className="flex flex-col gap-4 max-w-3xl">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 w-fit">
           <User size={12} className="text-[hsl(var(--hero-glow))]" />
-          <span className="text-[10px] uppercase tracking-[0.1em] font-bold text-white/50 code-text">About Me</span>
+          <span className="text-[10px] uppercase tracking-[0.1em] font-bold text-white/50 code-text">
+            About Me
+          </span>
         </div>
         <h2 className="text-4xl md:text-6xl font-bold tracking-tighter">
           The Story.
@@ -132,7 +162,9 @@ const AboutSection: React.FC = () => {
                   <p className="text-xs text-white/30 uppercase tracking-[0.1em]">
                     Availability
                   </p>
-                  <p className="text-sm font-medium code-text">Seeking opportunities</p>
+                  <p className="text-sm font-medium code-text">
+                    Seeking opportunities
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-4 group/item">
@@ -143,7 +175,9 @@ const AboutSection: React.FC = () => {
                   <p className="text-xs text-white/30 uppercase tracking-[0.1em]">
                     Location
                   </p>
-                  <p className="text-sm font-medium code-text">Remote / EST-PST</p>
+                  <p className="text-sm font-medium code-text">
+                    Remote / EST-PST
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-4 group/item">
@@ -240,23 +274,35 @@ const AboutSection: React.FC = () => {
           <div className="flex flex-col h-full gap-6">
             <p className="text-white/60 font-light">
               Equilibrium found in high-altitude treks, competitive table
-              tennis, and the meticulous craft of manual coffee extraction.
+              tennis, and a genuine love for coffee.
             </p>
             <div className="grid grid-cols-3 gap-2 mt-auto">
               <div className="aspect-square rounded-lg bg-white/[0.01] group-hover:bg-white/[0.02] border border-white/5 flex flex-col items-center justify-center gap-2 transition-all hover:border-white/10">
-                <div className="text-[8px] font-mono text-white/30 uppercase tracking-widest">Channel 01</div>
+                <div className="text-[8px] font-mono text-white/30 uppercase tracking-widest">
+                  Channel 01
+                </div>
                 <Mountain size={24} className="text-white/70" />
-                <div className="text-[10px] font-medium text-white/60">Hiking</div>
+                <div className="text-[10px] font-medium text-white/60">
+                  Hiking
+                </div>
               </div>
               <div className="aspect-square rounded-lg bg-white/[0.01] group-hover:bg-white/[0.02] border border-white/5 flex flex-col items-center justify-center gap-2 transition-all hover:border-white/10">
-                <div className="text-[8px] font-mono text-white/30 uppercase tracking-widest">Channel 02</div>
+                <div className="text-[8px] font-mono text-white/30 uppercase tracking-widest">
+                  Channel 02
+                </div>
                 <Volleyball size={24} className="text-white/70" />
-                <div className="text-[10px] font-medium text-white/60">Table Tennis</div>
+                <div className="text-[10px] font-medium text-white/60">
+                  Table Tennis
+                </div>
               </div>
               <div className="aspect-square rounded-lg bg-white/[0.01] group-hover:bg-white/[0.02] border border-white/5 flex flex-col items-center justify-center gap-2 transition-all hover:border-white/10">
-                <div className="text-[8px] font-mono text-white/30 uppercase tracking-widest">Channel 03</div>
+                <div className="text-[8px] font-mono text-white/30 uppercase tracking-widest">
+                  Channel 03
+                </div>
                 <Coffee size={24} className="text-white/70" />
-                <div className="text-[10px] font-medium text-white/60">Coffee Brewing</div>
+                <div className="text-[10px] font-medium text-white/60">
+                  Coffee Lover
+                </div>
               </div>
             </div>
           </div>
@@ -266,10 +312,6 @@ const AboutSection: React.FC = () => {
   );
 };
 
-
 export const About = () => {
-  return (
-        <AboutSection />
-
-  );
+  return <AboutSection />;
 };

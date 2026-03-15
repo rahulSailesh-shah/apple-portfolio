@@ -70,7 +70,7 @@ const PROJECTS_DATA: Project[] = [
     imageUrl:
       "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/conversense.png",
     videoUrl:
-      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/videos/Integration_Demo.mov",
+      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/videos/conversense.mov",
     hasVideoDemo: true,
     sourceCodeUrl: "https://github.com/rahulSailesh-shah/conversense",
   },
@@ -117,33 +117,9 @@ const PROJECTS_DATA: Project[] = [
       "Livekit",
     ],
     imageUrl:
-      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/voicepad.png",
-    videoUrl: "https://voicepad.com",
-    hasVideoDemo: true,
+      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/draw.png",
+    hasVideoDemo: false,
     sourceCodeUrl: "https://github.com/rahulSailesh-shah/VoicePad",
-  },
-  {
-    id: "Ch8n",
-    title: "Ch8n",
-    subtitle: "Create n8n style workflows with AI",
-    category: "AI",
-    description:
-      "Ch8n is a platform that lets you create n8n style workflows with AI. It allows you to create workflows that can be used to automate tasks and processes.",
-    techStack: [
-      "Go",
-      "React",
-      "TypeScript",
-      "Better Auth",
-      "PostgreSQL",
-      "Docker",
-      "GenAI",
-    ],
-    imageUrl:
-      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/vistruct.png",
-    videoUrl:
-      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/videos/Integration_Demo.mov",
-    hasVideoDemo: true,
-    sourceCodeUrl: "https://github.com/rahulSailesh-shah/ch8n_go",
   },
 
   // Tools
@@ -156,7 +132,7 @@ const PROJECTS_DATA: Project[] = [
       "A simple POSIX-compliant shell implementation in Go. Supports built-in commands (exit, echo, type, pwd, cd), executes external programs, handles single and double quotes, and supports ~ in cd",
     techStack: ["Go"],
     imageUrl:
-      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/shell.webp",
+      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/shell.png",
     hasVideoDemo: false,
     sourceCodeUrl: "https://github.com/rahulSailesh-shah/go-shell",
   },
@@ -169,7 +145,7 @@ const PROJECTS_DATA: Project[] = [
       "A minimalist, in-memory Redis-compatible server written in Go. It implements the RESP protocol and supports basic commands like PING, SET/GET, and hash operations (HSET, HGET, HGETALL).\n\nFeatures:\n- RESP protocol parsing and serialization\n- Thread-safe key-value store (SET / GET)\n- Thread-safe hash map store (HSET / HGET / HGETALL)",
     techStack: ["Go", "TCP Networking"],
     imageUrl:
-      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/redis.webp",
+      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/redis.png",
     hasVideoDemo: false,
     sourceCodeUrl: "https://github.com/rahulSailesh-shah/redis",
   },
@@ -182,7 +158,7 @@ const PROJECTS_DATA: Project[] = [
       "A simple round-robin HTTP load balancer written in Go. Incoming requests are proxied to a pool of backend servers, health-checked periodically, and automatically removed from rotation when unreachable. Reverse proxy using net/http/httputil",
     techStack: ["Go", "net/http", "httputil", "Viper", "YAML"],
     imageUrl:
-      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/loadbalancer.webp",
+      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/lb.png",
     hasVideoDemo: false,
     sourceCodeUrl: "https://github.com/rahulSailesh-shah/go-loadbalancer",
   },
@@ -195,9 +171,30 @@ const PROJECTS_DATA: Project[] = [
       "A high-performance, structured logging library for Go that provides a context-aware abstraction over zerolog for enterprise-grade observability. It features native support for multi-destination transports like AWS CloudWatch and local files, alongside built-in trace ID propagation and custom event hooks.",
     techStack: ["Go", "Zerolog", "AWS CloudWatch", "Local Files"],
     imageUrl:
-      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/loadbalancer.webp",
+      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/logger.png",
     hasVideoDemo: false,
     sourceCodeUrl: "https://github.com/rahulSailesh-shah/go-logger",
+  },
+  {
+    id: "AutoDeploy",
+    title: "Auto Deploy",
+    subtitle: "Automated React Deployment Pipeline",
+    category: "Tools",
+    description:
+      "A backend application that automates React project builds from GitHub URLs using ECS build servers. It handles cloning, dependency installation, and building, then deploys static assets to S3 while serving them through a custom reverse proxy.",
+    techStack: [
+      "Node.js",
+      "Express.js",
+      "AWS ECS",
+      "AWS S3",
+      "Redis",
+      "Docker",
+      "Reverse Proxy",
+    ],
+    imageUrl:
+      "https://portfolio-assets-rshah107.s3.us-east-2.amazonaws.com/images/deploy.png",
+    hasVideoDemo: false,
+    sourceCodeUrl: "https://github.com/rahulSailesh-shah/auto-deploy",
   },
 
   // Full Stack Projects
